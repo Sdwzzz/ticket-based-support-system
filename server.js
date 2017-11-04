@@ -11,22 +11,29 @@ const mongoose = require("mongoose");
 const app = express();
 const server = http.createServer(app);
 
-
+// set token secret
+const secret = require('./secrets/tokenSecret');
+app.set('secret', secret);
 
 
 // set the port
 const port = process.env.PORT || 4000;
 
+// initialize the database connection
+require('./config/dbConfig');
 
+
+// set the static file folder
+app.use(express.static(path.join(__dirname,"public")));
 
 
 // initialize all app level middlewares
 require('./config/middlewaresConfig')(app);
 
 
-//  initialize all 
+//  initialize all models
 
-		// loop through all the model files and initialize the files
+	// loop through all the model files and initialize the files
 		fs.readdirSync(path.join(__dirname,'./app/models')).forEach((fileName) => {
 			 //make sure file is js and then initialize 
 		     	 if(fileName.indexOf('.js') !== -1){
@@ -49,7 +56,18 @@ require('./config/middlewaresConfig')(app);
 	     })
      
     
+// initialize fall back routes
+app.get('*', (req,res)=>{
 
+	let response = responseFormat(true,'This is not a valid api, try a valid one',400,null)
+    return res.json(response);
+})
+
+app.post('*', (req,res)=>{
+
+	let response = responseFormat(true,'This is not a valid api, try a valid one',400,null)
+	return res.json(response);
+})
 
 
 // let's kick the server

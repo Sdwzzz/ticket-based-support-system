@@ -8,7 +8,7 @@ const _router = express.Router()
 
 module.exports = (app, responseFormat) => {
 
-	_router.get('/', (req, res) => {
+	_router.get('/home', (req, res) => {
 
 		let response = responseFormat(false,'welcome to ask elf',200,null)
 
