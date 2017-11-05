@@ -6,6 +6,7 @@ const _router = express.Router();
 const questionModel = mongoose.model("questionModel");
 const userModel = mongoose.model("userModel");
 const isAllFieldsAvailable = require('../../customMiddlewares/isAllFieldsAvailable');
+const SMTP = require('../../config/SMTP');
 
 
 
@@ -20,6 +21,11 @@ module.exports = (app, responseFormat) => {
         	if(err){
         		console.log(err);
         	}
+
+            if(!user){
+                let response = responseFormat(true,"you have to be a user of askElf to  post  any questions",400,null);
+                return res.json(response);
+            }
 
         	// question object
         	let question = {
