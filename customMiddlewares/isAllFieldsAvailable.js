@@ -39,7 +39,32 @@ module.exports = (req, res, next) => {
     }
 
 
+    // CHECK ALL FIELDS ARE PRESENT IN POSTING QUESTION
+    if(req.originalUrl === '/api/askquestion'){
+    	if(!req.body.title || !req.body.question || !req.body.programmingLanguage){
+
+    		// SOME FIELDS ARE EMPTY
+				const response = responseFormat(true,'some input parameters are missing in your question fields',400,null);
+				return res.json(response);
+                
+    	}
+    }
+
+
+   // CHECK ALL FIELDS ARE PRESENT IN THE ANSWER
+    if(req.originalUrl === '/api/answer'){
+    	if(!req.body.questionId || !req.body.answer ){
+
+    		// SOME FIELDS ARE EMPTY
+				const response = responseFormat(true,'some input parameters are missing in your answer fields',400,null);
+				return res.json(response);
+                
+    	}
+    }
+
 
 	// IF ALL FIELDS ARE PRESENT THEN GO TO SIGN UP FUNCTION OR LOGIN FUNCTION (BASED ON THE REQUESTED END POINT);
      return next();
 }
+
+

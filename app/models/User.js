@@ -16,7 +16,8 @@ let userSchema = Schema({
 	intrestedLanguages : [],
 	questionsAsked :[{type:Schema.ObjectId, ref:"questionModel"}],
 	questionsAnswered:[{type:Schema.ObjectId, ref:"questionModel"}],
-    totalGifts:{type:Number}
+  totalGifts:{type:Number},
+  joined : {type:Date, default:Date.now()}
 
 })
 
