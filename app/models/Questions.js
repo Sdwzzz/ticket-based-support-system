@@ -12,7 +12,8 @@ const questionSchema = Schema({
 	posted : {type:Date, default:Date.now()},
 	answers : [{type:Schema.ObjectId, ref:"answerModel"}],
 	votes : {type:Number, default:0},
-	postedBy: {type:Schema.ObjectId, ref:"userModel"}
+	postedBy: {type:Schema.ObjectId, ref:"userModel"},
+	status: {type:String, default:"open"}
 
 });
 

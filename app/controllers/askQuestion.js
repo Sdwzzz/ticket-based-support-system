@@ -7,16 +7,16 @@ const questionModel = mongoose.model("questionModel");
 const userModel = mongoose.model("userModel");
 const isAllFieldsAvailable = require('../../customMiddlewares/isAllFieldsAvailable');
 const SMTP = require('../../config/SMTP');
-
+const jwtVerification = require('../../customMiddlewares/jwtVerification');
 
 
 
 module.exports = (app, responseFormat) => {
 
-	_router.post('/askquestion',isAllFieldsAvailable, (req, res) => {
+	_router.post('/askquestion',jwtVerification,isAllFieldsAvailable, (req, res) => {
          
         // find the user 
-        userModel.findOne({"email":req.body.email}, function(err, user){
+        userModel.findOne({"email":req.decoded.email}, function(err, user){
 
         	if(err){
         		console.log(err);

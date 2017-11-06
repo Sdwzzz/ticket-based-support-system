@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
 	// CHECK ANY EMPTY FIELDS ARE PRESENT (FOR SIGNUP FIELD)
      if(req.originalUrl === '/api/signup'){
 
-			if(!req.body.email || !req.body.userName || !req.body.password || !req.body.gender || !req.body.intrestedLanguages){
+			if(!req.body.email || !req.body.userName || !req.body.password || !req.body.gender || !req.body.interestedLanguages){
 				// SOME FIELDS ARE EMPTY
 				const response = responseFormat(true,'some input parameters are missing in your signup fields',400,null);
 				return res.json(response);

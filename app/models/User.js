@@ -13,11 +13,13 @@ let userSchema = Schema({
 	password : {type:String},
 	gender : {type:String},
 	score : {type:String},
-	intrestedLanguages : [],
+	interestedLanguages : [],
 	questionsAsked :[{type:Schema.ObjectId, ref:"questionModel"}],
 	questionsAnswered:[{type:Schema.ObjectId, ref:"questionModel"}],
   totalGifts:{type:Number},
-  joined : {type:Date, default:Date.now()}
+  joined : {type:Date, default:Date.now()},
+  votedQuestions :[{type:Schema.ObjectId, ref:"questionModel"}],
+  votedAnswers :[{type:Schema.ObjectId, ref:"questionModel"}]
 
 })
 

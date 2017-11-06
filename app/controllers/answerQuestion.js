@@ -8,14 +8,15 @@ const questionModel = mongoose.model("questionModel");
 const answerModel = mongoose.model("answerModel");
 const isAllFieldsAvailable = require('../../customMiddlewares/isAllFieldsAvailable');
 const SMTP = require('../../config/SMTP');
+const jwtVerification = require('../../customMiddlewares/jwtVerification');
 
 
 
 module.exports = (app, responseFormat) => {
 
-	_router.post('/answer',isAllFieldsAvailable, (req, res) => {
+	_router.post('/answer',jwtVerification,isAllFieldsAvailable, (req, res) => {
 
-		userModel.findOne({"email":req.body.email}, function(err, user){
+		userModel.findOne({"email":req.decoded.email}, function(err, user){
 
 			if(err){
 				console.log(err);
@@ -34,6 +35,12 @@ module.exports = (app, responseFormat) => {
 
 				if(!question){
 					let response = responseFormat(true,"there is no questions available for this question id",400,null);
+					return res.json(response);
+				}
+
+				// check the status of the questio
+				if(question.status === "closed"){
+					let response = responseFormat(true,"this question is resolved or closed ",400,null);
 					return res.json(response);
 				}
 
@@ -66,7 +73,10 @@ module.exports = (app, responseFormat) => {
                             if(!answer.answeredBy){
                             	return;
                             }
-
+                              
+                            if(answer.answeredBy.toString()===req.decoded._id){
+                            	return;
+                            }
                             //check for repeatation to same user
                             
                             if(ids.indexOf(answer.answeredBy.toString()) !== -1){
@@ -143,6 +153,13 @@ module.exports = (app, responseFormat) => {
 			        		if(err){
 			        			console.log(err);
 			        		}
+			           if(!user){
+			           	return;
+			           }
+
+			           if(user.email === req.decoded.email){
+			           	       return;
+			           }
 
 			         // send notification to the person who asked this question
 				     let mailOptions={

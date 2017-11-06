@@ -12,6 +12,7 @@ const isAllFieldsAvailable = require('../../customMiddlewares/isAllFieldsAvailab
 
 
 
+
 module.exports = (app, responseFormat) => {
 
 	_router.post('/login', isAllFieldsAvailable , (req, res) => {

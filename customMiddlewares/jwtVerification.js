@@ -3,7 +3,8 @@
 // DEPENDECIES
 const responseFormat = require('../customLib/responseFormat');
 const jwt    = require('jsonwebtoken');
-const secret = rquire('../secrets/tokenSecret');
+const secret = require('../secrets/tokenSecret');
+
 
 
 
