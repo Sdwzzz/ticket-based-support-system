@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const questionSchema = Schema({
 
 	title: {type:String},
-	programmingLanguge:{type:String},
+	game:{type:String},
 	question : {type:String},
 	posted : {type:Date, default:Date.now()},
 	answers : [{type:Schema.ObjectId, ref:"answerModel"}],

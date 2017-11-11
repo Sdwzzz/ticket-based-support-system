@@ -25,7 +25,7 @@ module.exports = (app, responseFormat) => {
 
 		       	      if(!user){
 		       	      	// wrong emai address
-		       	      	let response = responseFormat(true,"give email address is wrong, try correct one",400,null);
+		       	      	let response = responseFormat(true,"given email address is wrong, try correct one",400,null);
 		       	      	return res.json(response);
 		       	      }
 

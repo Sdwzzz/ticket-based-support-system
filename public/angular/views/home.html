@@ -1,0 +1,62 @@
+<!-- home view -->
+
+<div id="homehome" style="margin-top:20px" class='row'>
+   <link href="https://fonts.googleapis.com/css?family=Vollkorn+SC" rel="stylesheet">
+	<div class="col s6">
+		<div class="hide-on-small-only">
+			<img  class="introimg" src="assets/logo5.png" alt="">
+		</div>
+	</div>
+
+	<div style="margin-top:20px;" class="col s12 m6">
+	   <div class="">
+	   	 <p  class="flow-text introtext">welcome to 
+<span class='logo' style="color:black"  class="brand-logo" >ask<span style="padding:4px;border-radius:2px;background-color:#0E0B16;box-shadow:0px 0px 2px black;margin-left:2px;text-shadow:1px 1px 2px black" class="card white-text">ELF</span></span></br>
+ if you stuck in any of your intresting game levels or you want some </br>
+ cheat sheet for your favourite game. here you get answer for all your gamming related questions.
+	   	 </p>
+	   </div>
+
+	   <div>
+
+	      
+	   	 <a href ="#!login" id="login" style="background-color:#49274A;color:white;" class="waves-effect waves-light  btn ">Login</a>
+	   	 
+
+        <a href ="#!signup" id="signup" style="background-color:#49274A;color:white;" class="waves-effect waves-light  btn right ">Signup</a>
+        
+
+	   </div>
+		
+	</div>
+
+
+	<script>
+
+	
+
+	 $('#login').hide();
+	 $('#login').fadeIn('slow')
+	 $('#signup').hide();
+	 $('#signup').fadeIn('slow')
+		 
+     window.sr= ScrollReveal({reset:true});
+
+	 sr.reveal('.introimg',{
+	 duration: 2000,
+     origin: 'top',
+     distance:'100px'
+	});
+
+	 sr.reveal('.introtext',{
+	 duration: 4000,
+     origin: 'right',
+     distance:'500px'
+	});
+
+
+	
+
+	
+	</script>
+</div>

@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
 	// CHECK ANY EMPTY FIELDS ARE PRESENT (FOR SIGNUP FIELD)
      if(req.originalUrl === '/api/signup'){
 
-			if(!req.body.email || !req.body.userName || !req.body.password || !req.body.gender || !req.body.interestedLanguages){
+			if(!req.body.email || !req.body.userName || !req.body.password || !req.body.gender || !req.body.interestedGames){
 				// SOME FIELDS ARE EMPTY
 				const response = responseFormat(true,'some input parameters are missing in your signup fields',400,null);
 				return res.json(response);
@@ -41,7 +41,7 @@ module.exports = (req, res, next) => {
 
     // CHECK ALL FIELDS ARE PRESENT IN POSTING QUESTION
     if(req.originalUrl === '/api/askquestion'){
-    	if(!req.body.title || !req.body.question || !req.body.programmingLanguage){
+    	if(!req.body.title || !req.body.question || !req.body.game){
 
     		// SOME FIELDS ARE EMPTY
 				const response = responseFormat(true,'some input parameters are missing in your question fields',400,null);

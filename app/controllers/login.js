@@ -49,7 +49,7 @@ module.exports = (app, responseFormat) => {
         res.cookie("token", token);
 
         let response = responseFormat(false,'successfully loged into the account !!!',200, user);
-        return res.json(user);
+        return res.json(response);
 
                 
         }) // end

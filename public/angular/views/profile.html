@@ -1,0 +1,69 @@
+
+<div style="margin-top:50px" class="row">
+	
+
+
+</div>
+
+
+
+
+<div  class="col s12 ">
+	<div style="padding-top:8px;padding-bottom:8px;" class="row card">
+		<a href="#!profile"><h6 style="text-align:center;font-weight:5em;color:#49274A;text-shadow:0px 0px 1px gray;font-size:1.5em;cursor:pointer;font-family: 'Righteous', cursive !important;" class="col s4 t"><span style="padding:4px;border-radius:2px;background-color:;box-shadow:0px 0px 2px black;margin-left:2px;text-shadow:0px 0px 1px black;border:2px solid black;color:#49274A" class="card">questions</span></h6></a>
+
+		<a href="#!ask"><h6 style="text-align:center;color:#49274A;font-weight:5em;text-shadow:0px 0px 1px gray;font-size:1.5em;cursor:pointer;font-family: 'Righteous', cursive !important;" class="col s4">ask</h6></a>
+
+		<h6 style="text-align:center;font-weight:5em;color:#49274A;text-shadow:0px 0px 1px gray;font-size:1.5em;cursor:pointer;font-family: 'Righteous', cursive !important;" class="col s4">your questions</h6>
+		
+	</div>
+</div>
+
+
+
+<div style="" class="col s12">
+	
+	<div id='allquestions'  class="row">
+
+		
+
+		<ul ng-repeat="question in profileCtrl.recentQuestions " class="collection" question-directive>
+
+			<li style="background-color:#49274A;border-radius:2px;padding-top:10px;padding-bottom:40px;padding-right:35px"  class="collection-item avatar z-depth-5 questioneffect col s12 card-panel ">
+
+				<span ng-if="question.status ==='open' "> <span style='background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span> </span>
+				<span ng-if="question.status ==='closed' "> <span style='background:red; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span></span>
+				<img src="assets/girl.png" alt="" class="circle"><span style="font-family:'Righteous'">{{question.postedBy.userName}}</span>
+				<h4 style="color:white;cursor:pointer;word-wrap:break-word;margin-top:40px" class="title"><a id="pretitle" style="color:white;cursor:pointer;text-decoration:;font-family:'Roboto'">{{question.title.toUpperCase()}}</a></h4>
+				<hr></hr>
+				<p class="truncate" style="color:white;font-family:"> 
+					{{question.question}}
+				</p>
+				
+				
+				<p style="color:black;font-weight:5em;text-align:right;margin-top:20px;font-family:'Righteous'">type : {{question.game}}</p>
+				<a title="answer" class="secondary-content" style="margin-right:2px;width:15px"><i style="padding-right:3px;width:15px;cursor:pointer" class="material-icons white-text right">edit_mode</i></a>
+				<p style="color:black;font-weight:5em;text-align:right;margin-top:20px;font-family:'Righteous'"> {{question.posted | date :  "h:mm a   M/d/yy" }}</p>
+			</li>
+
+		</ul>
+		
+	</div>
+</div>
+
+
+
+
+
+<script>
+	
+	$('#allquestions').hide();
+
+	
+
+</script>
+
+
+
+
+</div>

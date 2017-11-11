@@ -13,7 +13,7 @@ let userSchema = Schema({
 	password : {type:String},
 	gender : {type:String},
 	score : {type:String},
-	interestedLanguages : [],
+	interestedGames : [],
 	questionsAsked :[{type:Schema.ObjectId, ref:"questionModel"}],
 	questionsAnswered:[{type:Schema.ObjectId, ref:"questionModel"}],
   totalGifts:{type:Number},

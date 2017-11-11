@@ -47,8 +47,8 @@ module.exports = (app, responseFormat) => {
               newUser.email = req.body.email;
               newUser.password = newUser.createHash(req.body.password);
               newUser.gender = req.body.gender;
-              
-              newUser.interestedLanguages = req.body.interestedLanguages;
+              newUser.userName= req.body.userName;
+              newUser.interestedGames = req.body.interestedGames;
 
               newUser.save((err) => {
               	if(err){

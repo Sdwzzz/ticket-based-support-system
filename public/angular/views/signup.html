@@ -1,0 +1,76 @@
+
+	
+  <div  style="margin-top:50px;padding:4%" class="row">
+    
+  <div style="padding:4px;border:1px solid red" ng-if='signupCtrl.message !==null' class="col s12 card ">
+      <h5 style="font-family:'Vollkorn SC', serif;color:black;text-align:center;text-shadow:0px 0px 1px black;font-size:1.4em;font-weight:3em" >{{signupCtrl.message}}</h5>
+  </div>
+
+  <div ng-if="signupCtrl.loader===true" class="progress col s12">
+      <div  class="indeterminate"></div>
+  </div>
+    <form ng-submit='signupCtrl.signupHandler()' class="col s12">
+      <div id="logineffect" style="padding:5%;margin-bottom:10px;" class="row card">
+        <div class="input-field col s12 ">
+          <i style="color:#49274A" class="material-icons prefix">email</i>
+          <input id="icon_prefix" type="email" ng-model="signupCtrl.data.email" class="validate" required>
+          <label for="icon_prefix">Email</label>
+        </div>
+        
+        <div class="input-field col s12 ">
+          <i style="color:#49274A" class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" ng-model="signupCtrl.data.userName" class="validate" required>
+          <label for="icon_prefix">User Name</label>
+        </div>
+
+         
+            <div class="input-field col s12">
+            <i style="color:#49274A" class="material-icons prefix">wc</i>
+              <select name ="gender" ng-model="signupCtrl.data.gender">
+                <option  value="" disabled selected>Gender</option>
+                <option value="female">female</option>
+                <option value="male">male</option>
+                
+              </select>
+              <label>gender</label>
+            </div>
+
+            <div class="input-field col s12">
+    <select  name="interestedGames" ng-model="signupCtrl.data.interestedGames" multiple>
+      <option  value="" disabled selected>Intrested Games</option>
+      <option value="action">Action</option>
+      <option value="adventure">Adventure</option>
+      <option value="sports">sports</option>
+      <option value="vr">vr games</option>
+      <option value="others">others</option>
+    </select>
+    <label >choose atleast one</label>
+  </div>
+
+
+        <div class="input-field col s12">
+          <i style="color:#49274A" class="material-icons prefix">lock</i>
+          <input id="icon_telephone" type="password" ng-model="signupCtrl.data.password" class="validate" required>
+          <label for="icon_telephone">password</label>
+        </div>
+        <div class="input-field col s12">
+          <button  style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">SignUp
+    <i class="material-icons right">send</i>
+  </button> <i class="material-icons"></i>
+        </div>
+      </div>
+
+      <h6>if you already signed up? <a href="#!login">login</a></h6> 
+    </form>
+ 
+
+    <script>
+
+    	$('#logineffect').hide();
+    	$('#logineffect').fadeIn("slow");
+
+    $('select').material_select();
+  
+       
+    </script>
+  </div>

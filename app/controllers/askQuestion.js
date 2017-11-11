@@ -32,7 +32,7 @@ module.exports = (app, responseFormat) => {
 
         		title: req.body.title,
         		question: req.body.question,
-        		programmingLanguage: req.body.programmingLanguage,
+        		game: req.body.game,
         		postedBy : user
 
         	}
