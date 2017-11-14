@@ -1,0 +1,44 @@
+
+<!-- QUESTION DETAIL VIEW -->
+
+<div style="margin-top:40px" class="row">
+	 <!-- QUESTION DETAIL -->
+	 <div class="col s12">
+	 	<div id='qesDetail' class="card-panel z-index:5 green darken-1">
+	 	    <h6 style="text-align:right !important"><strong>posted</strong> : {{detailCtrl.questionDetail.posted | date : "h:mm a M/d/yy"}}
+	 	    </h6>
+	 	    <h6 style="text-align:right !important"><strong>posted by</strong> : {{detailCtrl.questionDetail.postedBy.userName}}
+	 	    </h6>
+
+	 		<h5>{{detailCtrl.questionDetail.title}}</h5>
+	 		<hr ></hr>
+	 		<p>{{detailCtrl.questionDetail.question}}</p>
+
+	 		<h6 style="text-align:right !important"><strong>votes</strong> : {{detailCtrl.questionDetail.votes}}
+	 	    </h6>
+	 	</div>
+	 </div>
+
+	 <!-- ANSWER FORM -->
+	 <div class="col s12">
+	 	<!-- LOGIN FORM -->
+    <form  ng-submit='detailCtrl.answerHandler()' class="col s12">
+        <div  style="padding:5%;margin-bottom:10px;" class="row card">
+           
+            <!-- PASSWORD -->
+            <div class="input-field col s12">
+                <i style="color:#49274A" class="material-icons prefix">edit_mode</i>
+                <textarea class="materialize-textarea" name="answer" id="" cols="30" rows="10"></textarea>
+                <label for="icon_telephone">Answer</label>
+            </div>
+            <!-- LOGIN BTN -->
+            <div class="input-field col s12">
+                <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">post
+                    <i class="material-icons right">send</i>
+                </button> <i class="material-icons"></i>
+            </div>
+        </div>
+        
+    </form>
+	 </div>
+</div>

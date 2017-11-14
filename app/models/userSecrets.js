@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let userSecretSchema = Schema({
-	email : {type:String},
-	password : {type:String}
+    email: { type: String },
+    password: { type: String }
 })
 
 

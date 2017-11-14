@@ -13,66 +13,66 @@ const userSecretModel = mongoose.model("userSecretModel");
 
 module.exports = (app, responseFormat) => {
 
-	_router.post('/forgetpassword',isAllFieldsAvailable, (req, res) => {
-          
-              // validate the provide email address
-		        if(!(validator.validate(req.body.email))){
-		          	 const response = responseFormat(true,'This is not a valid email address, try a valid one',400,null);
-		          	 return res.json(response);
-		          }  
-		          
-		       userModel.verifyEmail(req.body.email).then((user) => {
+    _router.post('/forgetpassword', isAllFieldsAvailable, (req, res) => {
 
-		       	      if(!user){
-		       	      	// wrong emai address
-		       	      	let response = responseFormat(true,"given email address is wrong, try correct one",400,null);
-		       	      	return res.json(response);
-		       	      }
+        // validate the provide email address
+        if (!(validator.validate(req.body.email))) {
+            const response = responseFormat(true, 'This is not a valid email address, try a valid one', 400, null);
+            return res.json(response);
+        }
 
-		       	    // mail the user credentials to the registered email
-		       	    userSecretModel.findOne({email:req.body.email}, function(err, secrets){
-		       	    	if(err){
-		       	    		console.log(err);
-		       	    	}
-		       	    	let email = secrets.email;
-		       	    	let password = secrets.password;
+        userModel.verifyEmail(req.body.email).then((user) => {
 
-			  let mailOptions={
+            if (!user) {
+                // wrong emai address
+                let response = responseFormat(true, "given email address is wrong, try correct one", 400, null);
+                return res.json(response);
+            }
 
-			  	        from : "askELF",
-			   			to : secrets.email,
-			   			subject :"PASSWORD RECOVERY",
-                        text : `userEmail : ${email}
-                                password  : ${password}
-                                `
-			   		};
+            // mail the user credentials to the registered email
+            userSecretModel.findOne({ email: req.body.email }, function(err, secrets) {
+                if (err) {
+                    console.log(err);
+                }
+                let email = secrets.email;
+                let password = secrets.password;
 
-			  SMTP.sendMail(mailOptions, function(error, response){
-			   			if(error){
-			   				console.log(error);
-			   				
-			   			}else{
-			   				console.log( response);
-			   				
-			   			}
-			   		});
+                let mailOptions = {
 
+                    from: "askELF",
+                    to: secrets.email,
+                    subject: "PASSWORD RECOVERY",
+                    text: `userEmail : ${email}
+			               password  : ${password} `              
+			                                
+                };
 
-			  let response = responseFormat(false,"your password is mailed to your email",200,null);
-			  return res.json(response);
+                SMTP.sendMail(mailOptions, function(error, response) {
+                    if (error) {
+                        console.log(error);
+
+                    } else {
+                        console.log(response);
+
+                    }
+                });
 
 
-		       	    }) // end
+                let response = responseFormat(false, "your password is mailed to your email", 200, null);
+                return res.json(response);
 
 
-		       }) // end        
+            }) // end
 
 
-		
-	}) // end
+        }) // end        
 
 
-	// mount the router as an app level middleware
-	app.use('/api',_router);
+
+    }) // end
+
+
+    // mount the router as an app level middleware
+    app.use('/api', _router);
 
 } // end

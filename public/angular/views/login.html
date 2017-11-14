@@ -1,63 +1,65 @@
 
-	
-  <div id="loginlogin" style="margin-top:50px;padding:4%" class="row">
-    
-  <div style="padding:4px;border:1px solid red" ng-if='loginCtrl.message !==null' class="col s12 card ">
-      <h5 style="font-family:'Vollkorn SC', serif;color:black;text-align:center;text-shadow:0px 0px 1px black;font-size:1.4em;font-weight:3em" >{{loginCtrl.message}}</h5>
-  </div>
+<!-- LOGIN VIEW -->
 
-  <div ng-if="loginCtrl.loader===true" class="progress col s12">
-      <div  class="indeterminate"></div>
-  </div>
+<div id="loginlogin" style="margin-top:50px;padding:4%" class="row">
+    <!-- ERROR MESSAGE -->
+    <div id='errorMessage'  ng-if='loginCtrl.message !==null' class="col s12 card ">
+        <h5>{{loginCtrl.message}}</h5>
+    </div>
+
+    <!-- LOADER IMAGE -->
+    <div ng-if="loginCtrl.loader===true" class="progress col s12">
+        <div class="indeterminate"></div>
+    </div>
+
+    <!-- LOGIN FORM -->
     <form ng-if="loginCtrl.login===true" ng-submit='loginCtrl.loginHandler()' class="col s12">
-      <div id="logineffect" style="padding:5%;margin-bottom:10px;" class="row card">
+        <div id="logineffect" style="padding:5%;margin-bottom:10px;" class="row card">
+            <!-- EMAIL -->
+            <div class="input-field col s12 ">
+                <i style="color:#49274A" class="material-icons prefix">email</i>
+                <input id="icon_prefix" type="email" ng-model="loginCtrl.data.email" class="validate" required>
+                <label for="icon_prefix">Email</label>
+            </div>
+            <!-- PASSWORD -->
+            <div class="input-field col s12">
+                <i style="color:#49274A" class="material-icons prefix">lock</i>
+                <input id="icon_telephone" type="password" ng-model="loginCtrl.data.password" class="validate" required>
+                <label for="icon_telephone">password</label>
+            </div>
+            <!-- LOGIN BTN -->
+            <div class="input-field col s12">
+                <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">Login
+                    <i class="material-icons right">send</i>
+                </button> <i class="material-icons"></i>
+            </div>
+        </div>
+        <!-- SIGNUP LINK -->
+        <h6>if you new? <a href="#!signup">signUp</a></h6>
+        <!-- FORGET PASSWORD LINK -->
+        <h6><a style="cursor:pointer" ng-click="loginCtrl.handleForgetPassword()">forget password</a></h6>
+    </form>
+
+    <!-- FORGET PASSWORD FORM -->
+    <form ng-if="loginCtrl.forgetPassword===true" ng-submit='loginCtrl.forgetHandler()'>
+        <h6>enter your registered email</h6>
+        <!-- EMAIL -->
         <div class="input-field col s12 ">
-          <i style="color:#49274A" class="material-icons prefix">email</i>
-          <input id="icon_prefix" type="email" ng-model="loginCtrl.data.email" class="validate" required>
-          <label for="icon_prefix">Email</label>
+            <i style="color:#49274A" class="material-icons prefix">email</i>
+            <input id="icon_prefix" type="email" ng-model="loginCtrl.forgetData.email" class="validate" required>
+            <label for="icon_prefix">Email</label>
         </div>
+        <!-- SEND BTN -->
         <div class="input-field col s12">
-          <i style="color:#49274A" class="material-icons prefix">lock</i>
-          <input id="icon_telephone" type="password" ng-model="loginCtrl.data.password" class="validate" required>
-          <label for="icon_telephone">password</label>
+            <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">send
+                <i class="material-icons right">send</i>
+            </button> <i class="material-icons"></i>
         </div>
-        <div class="input-field col s12">
-          <button  style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">Login
-    <i class="material-icons right">send</i>
-  </button> <i class="material-icons"></i>
-        </div>
-      </div>
-   
-    <h6>if you new? <a href="#!signup">signUp</a></h6>  
-    <h6><a style="cursor:pointer" ng-click="loginCtrl.handleForgetPassword()">forget password</a></h6>  
-
-    </form>
-    
-
-    <!-- FORGET PASSWORD -->
-    <form ng-if="loginCtrl.forgetPassword===true"  ng-submit='loginCtrl.forgetHandler()' >
-    <h6>enter your registered email</h6>
-    <div class="input-field col s12 ">
-          <i style="color:#49274A" class="material-icons prefix">email</i>
-          <input id="icon_prefix" type="email" ng-model="loginCtrl.forgetData.email" class="validate" required>
-          <label for="icon_prefix">Email</label>
-        </div>
-
-    <div class="input-field col s12">
-          <button  style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">send
-    <i class="material-icons right">send</i>
-  </button> <i class="material-icons"></i>
-        </div>
-      
-
     </form>
 
+    <!-- LOGIN SCRIPTS -->
     <script>
-      
-     
-        $('#loginlogin').hide();
-      $('#loginlogin').fadeIn("slow");
-      
-    	
+    $('#loginlogin').hide();
+    $('#loginlogin').fadeIn("slow");
     </script>
-  </div>
+</div>

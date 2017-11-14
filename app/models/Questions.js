@@ -6,17 +6,17 @@ const Schema = mongoose.Schema;
 // create question schema
 const questionSchema = Schema({
 
-	title: {type:String},
-	game:{type:String},
-	question : {type:String},
-	posted : {type:Date, default:Date.now()},
-	answers : [{type:Schema.ObjectId, ref:"answerModel"}],
-	votes : {type:Number, default:0},
-	postedBy: {type:Schema.ObjectId, ref:"userModel"},
-	status: {type:String, default:"open"}
+    title: { type: String },
+    game: { type: String },
+    question: { type: String },
+    posted: { type: Date, default: Date.now() },
+    answers: [{ type: Schema.ObjectId, ref: "answerModel" }],
+    votes: { type: Number, default: 0 },
+    postedBy: { type: Schema.ObjectId, ref: "userModel" },
+    status: { type: String, default: "open" }
 
 });
 
 
 // create question model
-mongoose.model('questionModel',questionSchema);
+mongoose.model('questionModel', questionSchema);

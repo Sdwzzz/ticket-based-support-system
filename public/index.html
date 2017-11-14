@@ -1,97 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-      
-
-
-	<title>askELF</title>
-
-	<link rel="stylesheet" href="styles/mainstyle.css" type="text/css" />
-	<link href="https://fonts.googleapis.com/css?family=Cinzel|Righteous" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>askELF</title>
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Righteous" rel="stylesheet">
+    <!-- MAIN STYLE SHEET -->
+    <link rel="stylesheet" href="styles/mainstyle.css" type="text/css" />
 </head>
-<body ng-app="myApp">
-   <div class="navbar-fixed">
-   <nav id='navbar' class="white darken-4 navbar-fixed">
-    <div class="nav-wrapper">
-    <img id='iconn' style="margin-left:5px;margin-top:;margin-right:5px;"  class='img-responsive' src='assets/logo5.png' />
-      <a href="#!" id='logo'  class="brand-logo" >ask<span style="padding:4px;border-radius:2px;background-color:#0E0B16;box-shadow:0px 0px 2px black;margin-left:2px;text-shadow:1px 1px 2px black" class="card white-text ">ELF</span></a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i style="color:#49274A !important" class="material-icons red-text">menu</i></a>
-      <ul id='navitem' class="right hide-on-med-and-down" style="margin-right:10px !important;">
-        <li class="tooltipped" id="home" style="width:" data-position="bottom" data-delay="50" data-tooltip="home"><a  href="#"><i style="color:#49274A !important" class="material-icons red-text " >home</i></a></li>
-        <li class="tooltipped" id="profile" data-position="bottom" data-delay="50" data-tooltip="profile"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">account_box</i></a></li>
-        <li  class="tooltipped" id="setting" data-position="bottom" data-delay="50" data-tooltip="settings"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">settings</i></a></li>
-        <li id="msg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="notification"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">message</i><span class="new badge" style="position:absolute;top:5px !important;right:5px;">2</span></a></li>
 
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-      <li><a href="#">Home</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">messages</a></li>
-      </ul>
+<!-- ANGULAR APP -->
+<body ng-app="myApp">   
 
+    <!-- NAV BAR SECTION -->
+    <div class="navbar-fixed">
+        <nav id='navbar' class="white darken-4 navbar-fixed">
+            <div class="nav-wrapper">
 
+                <!-- NAV ICON -->
+                <img id='iconn' class='img-responsive' src='assets/logo5.png' />
+                <!-- NAV LOGO -->
+                <a href="#!" id='logo' class="brand-logo">ask<span  class="card white-text ">ELF</span></a>
+                <!-- COLLAPSE ICON -->
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i style="color:#49274A !important" class="material-icons red-text">menu</i></a>
+
+                <!-- NAV ITEMS -->
+                <ul id='navitem' class="right hide-on-med-and-down" style="margin-right:10px !important;">
+                    <li class="tooltipped" id="home" style="width:" data-position="bottom" data-delay="50" data-tooltip="home"><a href="#"><i style="color:#49274A !important" class="material-icons red-text " >home</i></a></li>
+                    <li class="tooltipped" id="profile" data-position="bottom" data-delay="50" data-tooltip="profile"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">account_box</i></a></li>
+                    <li class="tooltipped" id="setting" data-position="bottom" data-delay="50" data-tooltip="settings"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">settings</i></a></li>
+                    <li id="msg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="notification"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">message</i><span class="new badge" style="position:absolute;top:5px !important;right:5px;">2</span></a></li>
+                </ul>
+
+                <!-- SIDE NAV ITEMS -->
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">messages</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 
-  </nav>
-
-  </div>
-
-
-  <!-- FAB -->
-
-  <div id='fab' class="fixed-action-btn">
-     <!-- <div style="background-color:#0E0B16;padding:3px;" class="card "> <h6 style="color:white;margin:2px;">live help !!</h6></div> -->
-    <a   class="btn-floating btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="live support">
-      <i style="background-color:#49274A;box-shadow:0px 0px 0px;color:white;text-shadow:1px 1px 2px black" class="large material-icons ">live_help</i>
-    </a>
-   <!--  <ul>
-     <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-     <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-     <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-     <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-   </ul> -->
-  </div>
-
-  <!-- view -->
-
-  <div class="container">
-    <div ng-view></div>
-  </div>
-
+    <!-- FAB -->
+    <div id='fab' class="fixed-action-btn">
      
+        <a class="btn-floating btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="live support">
+          <i style="background-color:#49274A;box-shadow:0px 0px 0px;color:white;text-shadow:1px 1px 2px black" class="large material-icons ">live_help</i>
+        </a>
+       
+    </div>
 
 
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-       <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <!-- ANGULAR VIEW SECTION -->
+    <div class="container">
+        <div ng-view></div>
+    </div>
 
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-      <!-- EXTERNAL SCRIPT FILES -->
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>		  
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-messages.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.min.js"></script>
-	
-	<script src="angular/app.js"></script>
-	<script src="scripts/main.js" type="text/javascript"></script>
-  <script src="angular/routes/mainRoute.js" type='text/javascript'></script>
-  <script src="angular/controllers/home.js" type='text/javascript'></script>
-  <script src="angular/controllers/login.js" type="text/javascript"></script>
-  <script src="angular/controllers/signup.js" type="text/javascript"></script>
-  <script src="angular/controllers/profile.js" type="text/javascript"></script>
-  <script src="angular/controllers/ask.js" type="text/javascript"></script>
-  <script src="angular/controllers/questionDetail.js" type="text/javascript"></script>
-  <script src="angular/directives/main.js" type="text/javascript"></script>
-	
+
+
+
+
+    <!-- INDEX SCRIPTS -->
+    
+    <!-- EXTERNAL SCRIPT FILES -->
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-messages.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.min.js"></script>
+
+    <!-- INTERNAL SCRIPT FILES -->
+    <script src="angular/app.js"></script>
+    <script src="scripts/main.js" type="text/javascript"></script>
+    <script src="angular/services/main.js" type="text/javascript"></script>
+    <script src="angular/routes/mainRoute.js" type='text/javascript'></script>
+    <script src="angular/controllers/home.js" type='text/javascript'></script>
+    <script src="angular/controllers/login.js" type="text/javascript"></script>
+    <script src="angular/controllers/signup.js" type="text/javascript"></script>
+    <script src="angular/controllers/profile.js" type="text/javascript"></script>
+    <script src="angular/controllers/ask.js" type="text/javascript"></script>
+    <script src="angular/controllers/questionDetail.js" type="text/javascript"></script>
+    <script src="angular/directives/main.js" type="text/javascript"></script>
 </body>
+
 </html>
