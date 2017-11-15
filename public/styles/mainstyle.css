@@ -257,10 +257,14 @@ nav {
     text-align: right;
     margin-top: 20px;
     font-family: 'Righteous';
+    background-color:#49274A
 }
 
 /* question detail view */
-
-#qesDetail h6 {
+#qestDetail {
+    background-color:#49274A !important;
+}
+#qestDetail h6 {
     text-align:center;
+    color:white;
 }

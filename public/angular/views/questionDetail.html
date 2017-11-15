@@ -1,44 +1,144 @@
-
 <!-- QUESTION DETAIL VIEW -->
-
 <div style="margin-top:40px" class="row">
-	 <!-- QUESTION DETAIL -->
-	 <div class="col s12">
-	 	<div id='qesDetail' class="card-panel z-index:5 green darken-1">
-	 	    <h6 style="text-align:right !important"><strong>posted</strong> : {{detailCtrl.questionDetail.posted | date : "h:mm a M/d/yy"}}
-	 	    </h6>
-	 	    <h6 style="text-align:right !important"><strong>posted by</strong> : {{detailCtrl.questionDetail.postedBy.userName}}
-	 	    </h6>
-
-	 		<h5>{{detailCtrl.questionDetail.title}}</h5>
-	 		<hr ></hr>
-	 		<p>{{detailCtrl.questionDetail.question}}</p>
-
-	 		<h6 style="text-align:right !important"><strong>votes</strong> : {{detailCtrl.questionDetail.votes}}
-	 	    </h6>
-	 	</div>
-	 </div>
-
-	 <!-- ANSWER FORM -->
-	 <div class="col s12">
-	 	<!-- LOGIN FORM -->
-    <form  ng-submit='detailCtrl.answerHandler()' class="col s12">
-        <div  style="padding:5%;margin-bottom:10px;" class="row card">
-           
-            <!-- PASSWORD -->
-            <div class="input-field col s12">
-                <i style="color:#49274A" class="material-icons prefix">edit_mode</i>
-                <textarea class="materialize-textarea" name="answer" id="" cols="30" rows="10"></textarea>
-                <label for="icon_telephone">Answer</label>
+    <!--  NOTIFICATION BAR -->
+    <div ng-if="detailCtrl.notify===true" id="notification" style="position:fixed;background-color:;margin-top:70px;padding:5px;" class="card-panel col s6 orange">
+        <h5 style="color:black;text-align:center;font-family: 'Righteous', cursive;font-size:1.2em;">{{detailCtrl.notification}}</h5>
+    </div>
+    <!-- QUESTION DETAIL -->
+    <div class="col s12">
+        <div class="row">
+            <div class="col s6">
+                <!-- BACK TO PROFILE LINK -->
+                <a class="btn" href="#!profile"> back to all questions </a>
             </div>
-            <!-- LOGIN BTN -->
-            <div class="input-field col s12">
-                <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">post
-                    <i class="material-icons right">send</i>
-                </button> <i class="material-icons"></i>
+            <!-- STATUS TOGGLE BUTTON -->
+            <div ng-show="detailCtrl.user===true" class="col s6 ">
+                <div class="switch right">
+                    <label>
+                        close
+                        <input type="checkbox" checked>
+                        <span class="lever"></span> open
+                    </label>
+                </div>
             </div>
         </div>
+        <div id='qestDetail' class="card-panel z-index:5 ">
+            <h6 style="text-align:right !important;"><strong>status</strong> : {{detailCtrl.questionDetail.status}}
+            </h6>
+            <h6 style="text-align:right !important;"><strong>posted</strong> : {{detailCtrl.questionDetail.posted | date : "h:mm a M/d/yy"}}
+            </h6>
+            <h6 style="text-align:right !important"><strong>posted by</strong> : {{detailCtrl.questionDetail.postedBy.userName}}
+            </h6>
+            <h5 style="color:white;word-wrap:break-word">{{detailCtrl.questionDetail.title}}</h5>
+            <hr></hr>
+            <p style="color:white">{{detailCtrl.questionDetail.question}}</p>
+            <h6 style="text-align:right !important" ng-model="detailCtrl.questionDetail.votes"><strong>votes</strong> : {{detailCtrl.questionDetail.votes}}
+
+            </h6>
+        </div>
+        <!-- UPVOTE AND DOWNVOTE BTNS -->
+        <i ng-click="detailCtrl.downvote()" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable  waves-effect waves-dark">arrow_drop_down</i>
+        <i ng-click="detailCtrl.upvote()" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable waves-effect waves-dark">arrow_drop_up</i>
+        <!-- DELETE BTN -->
+        <a ng-show="detailCtrl.user===true" ng-click="detailCtrl.deleteQuestion()" class="btn red "> delete </a>
+        <!-- EDIT BTN -->
         
-    </form>
-	 </div>
+        <a id="edit" ng-show="detailCtrl.user===true" style="background-color:background-color:#49274A !important"  class="waves-effect waves-light btn "><i style="width:25px" class="material-icons right">edit_mode</i>EDIT</a>
+    </div>
+    
+   <!--  EDIT FORM -->
+    <div style="display:none" id="editForm" class="col s12">
+        <!-- QUESTION FORM -->
+            <form syle="" ng-submit='detailCtrl.editHandler()'>
+                <div id="logineffect" style="padding:5%;margin-bottom:10px;" class="row card">
+
+                    <!-- QUESTION TITLE -->
+                    <div class="input-field col s12 ">
+                        <i style="color:#49274A" class="material-icons prefix ">title</i>
+                        <input id="icon_prefix" type="text" ng-model="detailCtrl.editdata.title" class="validate" required>
+                        <label for="icon_prefix"></label>
+                    </div>
+
+                    <!-- QUESTION -->
+                    <div class="input-field col s12">
+                        <i style="color:#49274A" class="material-icons prefix">edit_mode</i>
+                        <textarea id="textarea1" ng-model="detailCtrl.editdata.question" class="materialize-textarea" required></textarea>
+                        <label for="textarea1"></label>
+                    </div>
+
+                    <!-- OPTIONS FOR TYPE OF GAME -->
+                    <div class="col s12 ">
+                        <h6>choose the type of game</h6>
+                        <p>
+                            <input value="action" ng-model="detailCtrl.editdata.game" class="with-gap" name="group1" type="radio" id="test1" />
+                            <label for="test1">action</label>
+                        </p>
+                        <p>
+                            <input value="adventure" ng-model="detialCtrl.editdata.game" class="with-gap" name="group1" type="radio" id="test2" />
+                            <label for="test2">adventure</label>
+                        </p>
+                        <p>
+                            <input value="vr" ng-model="detailCtrl.editdata.game" class="with-gap" name="group1" type="radio" id="test3" />
+                            <label for="test3">vr games</label>
+                        </p>
+                        <p>
+                            <input value="others" ng-model="detailCtrl.editdata.game" class="with-gap" name="group1" type="radio" id="test4" />
+                            <label for="test4">others</label>
+                        </p>
+                    </div>
+
+                    <!-- POST BTN -->
+                    <div class="input-field col s12">
+                        <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">update
+                            <i class="material-icons right">send</i>
+                        </button> <i class="material-icons"></i>
+
+                       <!--  CANCEL BTN -->
+                       <a id="editCancel"  class="btn red "> CANCEL </a>
+                    </div>
+                </div>
+            </form>
+    </div>
+   
+      
+
+
+    <!-- ALL ANSWERS FOR THIS QUESTION -->
+    <div class="col s12">
+        <div style="border:2px solid #26a69a" class="card-panel" ng-model="detailCtrl.answers" ng-repeat="answer in detailCtrl.answers">
+            <h6 style="text-align:right !important"><strong>answered</strong> : {{answer.answered | date : "h:mm a M/d/yy"}}
+            </h6>
+            <h5 style="font-size:1.2em;">{{answer.answer}} </h5>
+            <h6 style="text-align:right !important" ng-model="answer.votes"><strong>votes</strong> : {{answer.votes}}
+
+            </h6>
+            <!-- UPVOTE AND DOWNVOTE BTNS -->
+            <i ng-click="detailCtrl.downvoteAnswer(answer._id, $index)" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable  waves-effect waves-dark">arrow_drop_down</i>
+            <i ng-click="detailCtrl.upvoteAnswer(answer._id, $index)" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable waves-effect waves-dark">arrow_drop_up</i>
+        </div>
+    </div>
+    <!-- ANSWER FORM -->
+    <div ng-show="detailCtrl.questionDetail.status==='open'" class="col s12">
+        <!-- LOGIN FORM -->
+        <form ng-submit='detailCtrl.answerHandler()' class="col s12">
+            <div style="padding:5%;margin-bottom:10px;box-shadow:0px 0px 8px black !important" class="row card ">
+                <!-- PASSWORD -->
+                <div class="input-field col s12">
+                    <i style="color:#49274A" class="material-icons prefix">edit_mode</i>
+                    <textarea ng-model="detailCtrl.data.answer" class="materialize-textarea" name="answer" id="" cols="30" rows="10"></textarea>
+                    <label for="icon_telephone">Answer</label>
+                </div>
+                <!-- LOGIN BTN -->
+                <div class="input-field col s12">
+                    <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">post
+                        <i class="material-icons right">send</i>
+                    </button> <i class="material-icons"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div  ng-show="detailCtrl.questionDetail.status==='closed'" style="text-align:center" id="questionEnd" class="col s12">
+    <h5 style="font-family: 'Righteous', cursive !important;color:#49274A;text-shadow: 0px 0px 1px #49274A;"><hr style=></hr>This question is closed<hr style=""></hr></h5>
+</div>
 </div>

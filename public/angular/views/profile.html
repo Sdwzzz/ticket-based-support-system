@@ -1,58 +1,59 @@
-
 <!-- PROFILE VIEW -->
-
-<div style="margin-top:50px" class="row">
-</div>
-<div class="col s12 ">
-    <div style="padding-top:8px;padding-bottom:8px;" class="row card">
-        <a href="#!profile"><h6 style="text-align:center;font-weight:5em;color:#49274A;text-shadow:0px 0px 1px gray;font-size:1.5em;cursor:pointer;font-family: 'Righteous', cursive !important;" class="col s4 t"><span style="padding:4px;border-radius:2px;background-color:;box-shadow:0px 0px 2px black;margin-left:2px;text-shadow:0px 0px 1px black;border:2px solid black;color:#49274A" class="card">questions</span></h6></a>
-        <a href="#!ask"><h6 style="text-align:center;color:#49274A;font-weight:5em;text-shadow:0px 0px 1px gray;font-size:1.5em;cursor:pointer;font-family: 'Righteous', cursive !important;" class="col s4">ask</h6></a>
-        <h6 style="text-align:center;font-weight:5em;color:#49274A;text-shadow:0px 0px 1px gray;font-size:1.5em;cursor:pointer;font-family: 'Righteous', cursive !important;" class="col s4">your questions</h6>
-    </div>
-</div>
-
-<!-- RECENT QUESTIONS -->
-<div style="" class="col s12">
-    <div id='allquestions' class="row">
-        <ul id='recent' ng-repeat="question in profileCtrl.recentQuestions " class="collection" question-directive>
-
-            <!-- QUESTION CARD -->
-            <li  class="collection-item avatar z-depth-5 questioneffect col s12 card-panel ">
-
-                <!-- QUESTION STATUS -->
-                <span ng-if="question.status ==='open' "> <span style='background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span> </span>
-                <span ng-if="question.status ==='closed' "> <span style='background:red; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span></span>
-
-                <!-- AVATAR -->
-                <img ng-src="assets/{{question.postedBy.gender}}.png" alt="" class="circle"><span style="font-family:'Righteous'">{{question.postedBy.userName}}</span>
-
-               <!--  QUESTION TITLE -->
-                <h4 id='questionTitle'  class="title">
+<div  style="margin-top:50px" class="row">
+    
+    <!-- RECENT QUESTIONS -->
+    <div style="" class="col s12">
+        <div id='allquestions' class="row">
+            <ul id='recent' ng-repeat="question in profileCtrl.recentQuestions " class="collection" question-directive>
+                <!-- QUESTION CARD -->
+                <li class="collection-item avatar z-depth-5 questioneffect col s12 card-panel ">
+                    <!-- QUESTION STATUS -->
+                    <span ng-if="question.status ==='open' "> <span style='background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span> </span>
+                    <span ng-if="question.status ==='closed' "> <span style='background:red; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span></span>
+                    <!-- AVATAR -->
+                    <img ng-src="assets/{{question.postedBy.gender}}.png" alt="" class="circle"><span style="font-family:'Righteous'">{{question.postedBy.userName}}</span>
+                    <!--  QUESTION TITLE -->
+                    <h4 id='questionTitle' class="title">
                     <a ng-click="profileCtrl.answerLinkHandler(question._id)" questionId={{question._id}}>{{question.title.toUpperCase()}}</a>
                 </h4>
-
-                <hr></hr>
-
-                <!-- QUESTION CONTENT -->
-                <p class="truncate" style="color:white;font-family:">
-                    {{question.question}}
-                </p>
-
-                <!-- QUESTION TYPE -->
-                <p id="questionType">type : {{question.game}}</p>
-
-                <!-- ANSWER LINK -->
-                <a title="answer" questionId={{question._id}} ng-click="profileCtrl.answerLinkHandler(question._id)"  class="secondary-content" style="margin-right:2px;width:15px"><i style="padding-right:3px;width:15px;cursor:pointer" class="material-icons white-text right">edit_mode</i></a>
-
-                <!-- POSTED DATE -->
-                <p style="color:black;font-weight:5em;text-align:right;margin-top:20px;font-family:'Righteous'"> {{question.posted | date : "h:mm a M/d/yy" }}</p>
-            </li>
-        </ul>
+                    <hr></hr>
+                    <!-- QUESTION CONTENT -->
+                    <p class="truncate" style="color:white;font-family:">
+                        {{question.question}}
+                    </p>
+                    <!-- QUESTION TYPE -->
+                    <p id="questionType">type : {{question.game}}</p>
+                    <!-- ANSWER LINK -->
+                    <a title="answer" questionId={{question._id}} ng-click="profileCtrl.answerLinkHandler(question._id)" class="secondary-content" style="margin-right:2px;width:15px"><i style="padding-right:3px;width:15px;cursor:pointer" class="material-icons white-text right">edit_mode</i></a>
+                    <!-- POSTED DATE -->
+                    <p style="color:black;font-weight:5em;text-align:right;margin-top:20px;font-family:'Righteous'"> {{question.posted | date : "h:mm a M/d/yy" }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- INFINITE LOADER -->
+    <div id="infiniteLoader" style="text-align:center" class="col s12">
+        <div class="preloader-wrapper  small active ">
+            <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<div style="display:none;text-align:center" id="questionEnd" class="col s12">
+    <h5 style="font-family: 'Righteous', cursive !important;color:#49274A;text-shadow: 0px 0px 1px #49274A;"><hr style=></hr>End<hr style=""></hr></h5>
+</div>
 <!-- PROFILE SCRIPTS -->
 <script>
-$('#allquestions').hide();
+$('.questioneffect').fadeIn("slow");
 </script>
 </div>
