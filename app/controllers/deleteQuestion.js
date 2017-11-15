@@ -29,7 +29,7 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!(req.decoded._id === question.postedBy.toString())) {
-                let response = responseFormat(true, 'you are not authorize to delete this question detail', 400, null);
+                let response = responseFormat(true, 'you are not authorize to delete this question', 400, null);
                 return res.json(response);
             }
 

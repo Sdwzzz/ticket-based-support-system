@@ -108,6 +108,8 @@
         <div style="border:2px solid #26a69a" class="card-panel" ng-model="detailCtrl.answers" ng-repeat="answer in detailCtrl.answers">
             <h6 style="text-align:right !important"><strong>answered</strong> : {{answer.answered | date : "h:mm a M/d/yy"}}
             </h6>
+             <h6 style="text-align:right !important"><strong>answered by</strong> : {{answer.answeredBy.userName}}
+            </h6>
             <h5 style="font-size:1.2em;">{{answer.answer}} </h5>
             <h6 style="text-align:right !important" ng-model="answer.votes"><strong>votes</strong> : {{answer.votes}}
 
@@ -115,6 +117,8 @@
             <!-- UPVOTE AND DOWNVOTE BTNS -->
             <i ng-click="detailCtrl.downvoteAnswer(answer._id, $index)" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable  waves-effect waves-dark">arrow_drop_down</i>
             <i ng-click="detailCtrl.upvoteAnswer(answer._id, $index)" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable waves-effect waves-dark">arrow_drop_up</i>
+
+            <a ng-model="answer.answeredBy._id" ng-if="detailCtrl.isUserAnswer($index)" ng-click="detailCtrl.deleteAnswer($index)" class="btn red "> DELETE </a>
         </div>
     </div>
     <!-- ANSWER FORM -->

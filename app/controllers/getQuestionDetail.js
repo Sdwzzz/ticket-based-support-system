@@ -14,12 +14,20 @@ module.exports = (app, responseFormat) => {
 
     _router.get('/questiondetail/:id', jwtVerification, (req, res) => {
 
-        let query = questionModel.findById({"_id":req.params.id});
-      
+        let query = questionModel.findById({ "_id": req.params.id });
+
 
 
         query.populate({ path: 'postedBy', model: "userModel", select: { "userName": 1, "gender": 1 } }).
-        populate('answers').
+        populate({
+            path: 'answers',
+            model: "answerModel",
+            populate: {
+                path: 'answeredBy',
+                model: "userModel",
+                select: { "userName": 1, "gender": 1 }
+            }
+        }).
         exec((err, questions) => {
 
             if (err) {

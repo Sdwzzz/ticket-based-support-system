@@ -1,5 +1,5 @@
 // question detail controller
-app.controller('detailController', ['$http', 'mainService', '$location', '$timeout', function($http, mainService, $location, $timeout) {
+app.controller('detailController', ['$http', 'mainService', '$location', '$timeout',"$cookies", function($http, mainService, $location, $timeout,$cookies) {
     let self = this;
     self.questionId = mainService.questionId;
     self.data = {};
@@ -9,8 +9,42 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
     self.notification = null;
     self.editdata = {};
 
+
+    // check for cookies 
+    if(!($cookies.get('token'))){
+        
+        // no token redirect to login page
+        $location.path('login');
+
+        return;
+    } 
+
+    // jwt token parsing
+    function parseJwt(token) {
+        let base64Url = token.split('.')[1];
+        let base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    };
+   
+    self.user = parseJwt($cookies.get('token'))
+    app.user = self.user;
+
+    // store the question id in window localstorage
+    if(self.questionId){
+      window.localStorage.questionId = self.questionId;
+    }
+
+    
+
     // scroll the window to top
     $(window).scrollTop(0);
+
+    // check the question id from localstorage
+    if(window.localStorage.questionId){
+      self.questionId =  window.localStorage.questionId;
+      mainService.questionId = window.localStorage.questionId;
+      self.data.questionId = mainService.questionId;
+    }
 
     // check question id 
     if (!self.questionId) {
@@ -48,6 +82,8 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
         })
 
 
+    // answer the question
+
     self.answerHandler = function() {
 
 
@@ -59,6 +95,9 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
                     newAnswer.answered = new Date();
                     newAnswer.answer = self.data.answer;
                     newAnswer.votes = 0;
+                    newAnswer.answeredBy = {};
+                    newAnswer.answeredBy.userName = app.user.userName;
+                    newAnswer.answeredBy.gender = app.user.gender;
 
                     self.answers.push(newAnswer);
 
@@ -261,6 +300,30 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
 
     }
 
+  // delete the answer
+  self.deleteAnswer = function($index){
+      console.log($index);
+
+      let data = {}
+      data.answerId = self.questionDetail.answers[$index]._id;
+      
+      $http.post('/api/deleteanswer', data)
+      .then(res =>{
+        if(!res.data.error){
+          self.answers.splice($index,1);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+
+  self.isUserAnswer = function($index){
+    let userId = self.questionDetail.answers[$index].answeredBy._id;
+    let currentUser = app.user._id;
+    return (userId === currentUser);
+  }
 
 
 }])
