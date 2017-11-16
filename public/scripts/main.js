@@ -27,9 +27,31 @@ $(document).ready(function(){
 			method:'GET',
 			success: function(res){
                console.log(res);
+               $('.button-collapse').sideNav('hide');
 			}
 		})
 	})
+
+	// logout function
+	$('#logoutSide').click(function(){
+		console.log('logged out');
+
+		$.ajax({
+			url:'/api/logout',
+			method:'GET',
+			success: function(res){
+               console.log(res);
+               $('.button-collapse').sideNav('hide');
+			}
+		})
+	})
+
+  // close sidenav at button click
+  $('.coolside').click(function(){
+  	 // Hide sideNav
+  $('.button-collapse').sideNav('hide');
+
+  })
 
 
 

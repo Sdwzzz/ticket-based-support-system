@@ -76,8 +76,15 @@ module.exports = (app, responseFormat) => {
                 });
 
 
+                let userData = {}
+                userData._id = user._id;
+                userData.userName = user.userName;
+                userData.gender = user.gender;
+                userData.email = user.email;
+
+
                 // create 24 hrs valid jwt token   and set to the cookies
-                const token = jwt.sign(newUser.toObject(), app.get('secret'), { expiresIn: 60 * 60 * 24 }); // ** validity 24 hours only **
+                const token = jwt.sign(userData, app.get('secret'), { expiresIn: 60 * 60 * 24 }); // ** validity 24 hours only **
                 res.cookie('token', token);
 
                 let response = responseFormat(false, "successfully signed up !!!", 200, token);
