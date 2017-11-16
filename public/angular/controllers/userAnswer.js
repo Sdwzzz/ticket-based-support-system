@@ -1,11 +1,13 @@
-// profile controller
-app.controller('profileController', ["$http", "$location", "mainService", "$cookies", function($http, $location, mainService, $cookies) {
+app.controller('userAnswerController', ["$http", "$location", "mainService", "$cookies", function($http, $location, mainService, $cookies) {
     let self = this;
-    this.name = 'profile';
+
+
     self.recentQuestions = [];
     self.skip = 0;
-    self.questionUrl = '/api/profile/';
-    self.profileTitle = "all questions";
+    self.questionUrl = '/api/useranswer/';
+    self.profileTitle = "all answers";
+    self.duplicateQuestions = [];
+
 
 
 
@@ -17,11 +19,33 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         $http.get(self.questionUrl + self.skip)
             .then((response) => {
 
-
+         
                 if (response.data.error) {
                     $location.path('login');
                 } else {
-                    self.recentQuestions = response.data.data;
+                    self.recentQuestions = [];
+                    self.duplicateQuestions = [];
+
+                    for (let i in response.data.data) {
+
+                        if (response.data.data[i].question === null) {
+
+                        } else {
+
+                            //duplicate question check
+                            if(self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1){
+
+                            } else {
+                                
+                                 self.duplicateQuestions.push(response.data.data[i].question._id);
+                                 self.recentQuestions.push(response.data.data[i].question);
+                            }
+                           
+                        }
+                    }
+
+                   
+
 
                 }
 
@@ -40,11 +64,11 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         let status = 'closed';
         self.stopscrolling = false;
         self.profileTitle = "closed questions";
-        window.localStorage.currentStatus = 'closedQuestions';
+        window.localStorage.currentStatususeranswer = 'closedQuestions';
         $('#questionEnd').hide();
 
         self.skip = 0;
-        self.questionUrl = '/api/statusbasedquestion/' + status + "/";
+        self.questionUrl = '/api/statusbaseduseranswer/' + status + "/";
 
         self.requestAgain();
 
@@ -55,11 +79,11 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         let status = 'open';
         self.stopscrolling = false;
         self.profileTitle = "open questions";
-        window.localStorage.currentStatus = 'openQuestions';
+        window.localStorage.currentStatususeranswer = 'openQuestions';
         $('#questionEnd').hide();
 
         self.skip = 0;
-        self.questionUrl = '/api/statusbasedquestion/' + status + "/";
+        self.questionUrl = '/api/statusbaseduseranswer/' + status + "/";
 
         self.requestAgain();
 
@@ -69,11 +93,11 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         self.stopscrolling = false;
         self.profileTitle = "all questions";
-        window.localStorage.currentStatus = 'allQuestions';
+        window.localStorage.currentStatususeranswer = 'allQuestions';
         $('#questionEnd').hide();
 
         self.skip = 0;
-        self.questionUrl = '/api/profile/';
+        self.questionUrl = '/api/useranswer/';
 
         self.requestAgain();
 
@@ -84,16 +108,16 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
 
     // check for state fo the all questions
-    if (window.localStorage.currentStatus) {
-        if (window.localStorage.currentStatus === 'closedQuestions') {
+    if (window.localStorage.currentStatususeranswer) {
+        if (window.localStorage.currentStatususeranswer === 'closedQuestions') {
             self.closedQuestion()
-        } else if (window.localStorage.currentStatus === 'openQuestions') {
+        } else if (window.localStorage.currentStatususeranswer === 'openQuestions') {
             self.openQuestion()
-        } else if (window.localStorage.currentStatus === 'allQuestions') {
+        } else if (window.localStorage.currentStatususeranswer === 'allQuestions') {
             self.allQuestion();
         }
     }
-   
+
     // check for cookies 
     if (!($cookies.get('token'))) {
 
@@ -102,7 +126,6 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         return;
     }
-
 
     // jwt token parsing
     function parseJwt(token) {
@@ -122,8 +145,23 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
             if (response.data.error) {
                 $location.path('login');
             } else {
-                self.recentQuestions = response.data.data;
+                for (let i in response.data.data) {
+                    if (response.data.data[i].question === null) {
 
+                    } else {
+
+                         //duplicate question check
+                            if(self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1){
+
+                            } else {
+                                
+                                 self.duplicateQuestions.push(response.data.data[i].question._id);
+                                 self.recentQuestions.push(response.data.data[i].question);
+                            }
+                    }
+                }
+
+                
             }
 
 
@@ -141,7 +179,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         // store the question id in service and redirect to answer page
         mainService.questionId = questionId;
-        mainService.comeFrom = 'profile';
+        mainService.comeFrom = 'useranswer';
         $location.path('questiondetail');
     }
 
@@ -160,8 +198,8 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         if ($(document).height() - $(window).height() - $(window).scrollTop() === 0) {
 
-            // check if scrolling is in profile view
-            if ($location.path() !== "/profile") {
+            // check if scrolling is in answer view
+            if ($location.path() !== "/useranswer") {
                 return;
             }
 
@@ -183,9 +221,28 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
                             $location.path('login');
                         } else {
                             console.log(response);
-                            self.recentQuestions = [...self.recentQuestions, ...response.data.data];
+                          let tempQuestions = [];
+                            for (let i in response.data.data) {
+                                if (response.data.data[i].question === null) {
 
+                                } else {
 
+                                     //duplicate question check
+                            if(self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1){
+
+                            } else {
+                               
+                                 self.duplicateQuestions.push(response.data.data[i].question._id);
+                                 tempQuestions.push(response.data.data[i].question);
+                            }
+                                  
+                                }
+
+                            }
+
+                            self.recentQuestions = [...self.recentQuestions, ...tempQuestions];
+
+                           
 
                             if (response.data.data.length === 0) {
                                 self.stopscrolling = true;
@@ -208,10 +265,4 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
     }) // scroll event end
 
-
-
-
-
-
-
-}]) // end-controller
+}])

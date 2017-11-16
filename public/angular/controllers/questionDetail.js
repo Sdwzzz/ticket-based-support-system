@@ -8,8 +8,8 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
     self.notify = false;
     self.notification = null;
     self.editdata = {};
-
-
+    self.comeFrom = mainService.comeFrom;
+ 
     // check for cookies 
     if (!($cookies.get('token'))) {
 
@@ -222,7 +222,7 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
                     $timeout(() => {
 
                         self.notify = false;
-                        $location.path('profile');
+                        $location.path(self.comeFrom);
                     }, 1500)
                 }
 

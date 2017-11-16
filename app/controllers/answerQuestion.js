@@ -32,13 +32,15 @@ module.exports = (app, responseFormat) => {
                 if (err) {
                     console.log(err);
                 }
+                
+                
 
                 if (!question) {
                     let response = responseFormat(true, "there is no questions available for this question id", 400, null);
                     return res.json(response);
                 }
 
-                // check the status of the questio
+                // check the status of the question
                 if (question.status === "closed") {
                     let response = responseFormat(true, "this question is resolved or closed ", 400, null);
                     return res.json(response);
@@ -54,13 +56,14 @@ module.exports = (app, responseFormat) => {
                 // send notification to all the users who already answered for this question
                 if (question.answers.length > 0) {
                     let previousAnswers = question.answers;
-
+                    
                     setTimeout(function() {
+                          console.log('i m herre ==========')
                         let ids = []
                         // loop through all the answers and find the person who posted answers and send the notification about the new answer for the question
                         for (let i = 0; i < previousAnswers.length; i++) {
 
-
+                           
                             answerModel.findById({ "_id": previousAnswers[i] }, (err, answer) => {
 
                                 if (err) {
@@ -94,6 +97,7 @@ module.exports = (app, responseFormat) => {
                                 userModel.findById({ "_id": answer.answeredBy }, (err, user) => {
                                     if (err) {
                                         console.log(err);
+                                        return;
                                     }
 
                                     let mailOptions = {
@@ -107,11 +111,13 @@ module.exports = (app, responseFormat) => {
                                     SMTP.sendMail(mailOptions, function(error, response) {
                                         if (error) {
                                             console.log(error);
+                                            return;
 
                                         } else {
 
                                             console.log(response);
-
+                                            return;
+                                            
                                         }
                                     });
 
@@ -125,6 +131,8 @@ module.exports = (app, responseFormat) => {
 
                     }, 0)
                 }
+               
+              
 
                 let newAnswer = new answerModel(answer);
                 newAnswer.save((err) => {
@@ -138,20 +146,22 @@ module.exports = (app, responseFormat) => {
                             console.log(err);
                         }
                         user.questionsAnswered.push(question);
+                        
                         user.save((err) => {
                             if (err) {
                                 console.log(err);
                             }
-
+                          
 
 
 
 
                             setTimeout(function() {
-
+                                
                                 userModel.findById({ "_id": question.postedBy }, function(err, user) {
                                     if (err) {
                                         console.log(err);
+                                        return;
                                     }
                                     if (!user) {
                                         return;
@@ -173,9 +183,11 @@ module.exports = (app, responseFormat) => {
                                     SMTP.sendMail(mailOptions, function(error, response) {
                                         if (error) {
                                             console.log(error);
+                                            return;
 
                                         } else {
                                             console.log(response);
+                                            return;
 
                                         }
                                     });
@@ -191,16 +203,21 @@ module.exports = (app, responseFormat) => {
 
 
 
-
+                          
 
                             let response = responseFormat(false, "answer successfully posted !!", 200, newAnswer);
                             return res.json(response);
                         })
+
+                        return;
                     })
+
+                    return;
                 })
-
+             
+             return;
             }) // end
-
+         return;
         }) // end
 
 

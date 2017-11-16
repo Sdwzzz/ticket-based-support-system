@@ -38,6 +38,16 @@ app.config(function($routeProvider) {
             controller: 'detailController',
             controllerAs: 'detailCtrl'
         })
+        .when('/userquestion', {
+            templateUrl : '../angular/views/userQuestion.html',
+            controller : 'userQuestionController',
+            controllerAs : 'userQuestionCtrl'
+        })
+        .when('/useranswer', {
+            templateUrl : '../angular/views/userAnswer.html',
+            controller :'userAnswerController',
+            controllerAs : 'userAnswerCtrl'
+        })
 
 
 })

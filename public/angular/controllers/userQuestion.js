@@ -1,10 +1,12 @@
-// profile controller
-app.controller('profileController', ["$http", "$location", "mainService", "$cookies", function($http, $location, mainService, $cookies) {
-    let self = this;
-    this.name = 'profile';
-    self.recentQuestions = [];
+// user question controller
+
+app.controller("userQuestionController",["$http", "$location", "mainService", "$cookies", function($http, $location, mainService, $cookies) {
+	let self = this;
+
+
+	 self.recentQuestions = [];
     self.skip = 0;
-    self.questionUrl = '/api/profile/';
+    self.questionUrl = '/api/userquestion/';
     self.profileTitle = "all questions";
 
 
@@ -40,11 +42,11 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         let status = 'closed';
         self.stopscrolling = false;
         self.profileTitle = "closed questions";
-        window.localStorage.currentStatus = 'closedQuestions';
+        window.localStorage.currentStatususer = 'closedQuestions';
         $('#questionEnd').hide();
 
         self.skip = 0;
-        self.questionUrl = '/api/statusbasedquestion/' + status + "/";
+        self.questionUrl = '/api/statusbaseduserquestion/' + status + "/";
 
         self.requestAgain();
 
@@ -55,11 +57,11 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         let status = 'open';
         self.stopscrolling = false;
         self.profileTitle = "open questions";
-        window.localStorage.currentStatus = 'openQuestions';
+        window.localStorage.currentStatususer = 'openQuestions';
         $('#questionEnd').hide();
 
         self.skip = 0;
-        self.questionUrl = '/api/statusbasedquestion/' + status + "/";
+        self.questionUrl = '/api/statusbaseduserquestion/' + status + "/";
 
         self.requestAgain();
 
@@ -69,11 +71,11 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         self.stopscrolling = false;
         self.profileTitle = "all questions";
-        window.localStorage.currentStatus = 'allQuestions';
+        window.localStorage.currentStatususer = 'allQuestions';
         $('#questionEnd').hide();
 
         self.skip = 0;
-        self.questionUrl = '/api/profile/';
+        self.questionUrl = '/api/userquestion/';
 
         self.requestAgain();
 
@@ -84,16 +86,16 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
 
     // check for state fo the all questions
-    if (window.localStorage.currentStatus) {
-        if (window.localStorage.currentStatus === 'closedQuestions') {
+    if (window.localStorage.currentStatususer) {
+        if (window.localStorage.currentStatususer === 'closedQuestions') {
             self.closedQuestion()
-        } else if (window.localStorage.currentStatus === 'openQuestions') {
+        } else if (window.localStorage.currentStatususer === 'openQuestions') {
             self.openQuestion()
-        } else if (window.localStorage.currentStatus === 'allQuestions') {
+        } else if (window.localStorage.currentStatususer === 'allQuestions') {
             self.allQuestion();
         }
     }
-   
+
     // check for cookies 
     if (!($cookies.get('token'))) {
 
@@ -102,7 +104,6 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         return;
     }
-
 
     // jwt token parsing
     function parseJwt(token) {
@@ -141,7 +142,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         // store the question id in service and redirect to answer page
         mainService.questionId = questionId;
-        mainService.comeFrom = 'profile';
+        mainService.comeFrom = 'userquestion';
         $location.path('questiondetail');
     }
 
@@ -161,7 +162,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         if ($(document).height() - $(window).height() - $(window).scrollTop() === 0) {
 
             // check if scrolling is in profile view
-            if ($location.path() !== "/profile") {
+            if ($location.path() !== "/userquestion") {
                 return;
             }
 
@@ -209,9 +210,4 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
     }) // scroll event end
 
 
-
-
-
-
-
-}]) // end-controller
+}])

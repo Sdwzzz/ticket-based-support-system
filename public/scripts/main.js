@@ -18,6 +18,21 @@ $(document).ready(function(){
 
 	
 
+	// logout function
+	$('#logout').click(function(){
+		console.log('logged out');
+
+		$.ajax({
+			url:'/api/logout',
+			method:'GET',
+			success: function(res){
+               console.log(res);
+			}
+		})
+	})
+
+
+
 
 })//end
 

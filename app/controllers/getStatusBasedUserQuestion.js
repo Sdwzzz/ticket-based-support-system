@@ -1,4 +1,4 @@
-// get all the status based question route
+// get all the status based user question route
 // dependencies
 const mongoose = require("mongoose");
 const express = require("express");
@@ -9,8 +9,8 @@ const jwtVerification = require('../../customMiddlewares/jwtVerification');
 
 module.exports = (app, responseFormat) => {
 
-	_router.get('/statusbasedquestion/:status/:skip',jwtVerification, (req, res) => {
-		console.log(req.params.status)
+	_router.get('/statusbaseduserquestion/:status/:skip',jwtVerification, (req, res) => {
+		
 		// validate the query fields
 		if(!req.params.status){
 			let response = responseFormat(true, "this route requires url parameter of status", 400,null);
@@ -23,7 +23,7 @@ module.exports = (app, responseFormat) => {
                    return res.json(response);
 		}
 
-		let query = questionModel.find({status:req.params.status});
+		let query = questionModel.find({'status':req.params.status,'postedBy': mongoose.Types.ObjectId(req.decoded._id)});
 
          query.sort({ posted: -1 });
          query.skip(parseInt(req.params.skip));

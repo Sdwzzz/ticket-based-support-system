@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>askELF</title>
-    
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,64 +12,72 @@
     <!-- MAIN STYLE SHEET -->
     <link rel="stylesheet" href="styles/mainstyle.css" type="text/css" />
 </head>
-
 <!-- ANGULAR APP -->
-<body ng-app="myApp">   
 
+<body ng-app="myApp">
     <!-- NAV BAR SECTION -->
-    <div class="navbar-fixed">
-        <nav id='navbar' class="white darken-4 navbar-fixed">
-            <div class="nav-wrapper">
-
+    <div class="">
+        <nav id='navbar' class="white darken-4 ">
+            <div class="">
                 <!-- NAV ICON -->
                 <img id='iconn' class='img-responsive' src='assets/logo5.png' />
                 <!-- NAV LOGO -->
                 <a href="#!" id='logo' class="brand-logo">ask<span  class="card white-text ">ELF</span></a>
                 <!-- COLLAPSE ICON -->
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i style="color:#49274A !important" class="material-icons red-text">menu</i></a>
-
                 <!-- NAV ITEMS -->
                 <ul id='navitem' class="right hide-on-med-and-down" style="margin-right:10px !important;">
-                    <li class="tooltipped" id="home" style="width:" data-position="bottom" data-delay="50" data-tooltip="home"><a href="#"><i style="color:#49274A !important" class="material-icons red-text " >home</i></a></li>
-                    <li class="tooltipped" id="profile" data-position="bottom" data-delay="50" data-tooltip="profile"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">account_box</i></a></li>
-                    <li class="tooltipped" id="setting" data-position="bottom" data-delay="50" data-tooltip="settings"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">settings</i></a></li>
-                    <li id="msg" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="notification"><a href="#"><i style="color:#49274A !important" class="material-icons red-text">message</i><span class="new badge" style="position:absolute;top:5px !important;right:5px;">2</span></a></li>
+                    <li><a style="font-size:0.8em;word-wrap:break-word;" class=" btn waves-effect btn-small" href="#!profile">RECENT QUESTIONS</a></li>
+                    <li><a style="font-size:0.8em;word-wrap:break-word;" class=" btn waves-effect" href="#!userquestion">YOUR QUESTIONS</a></li>
+                    <li><a style="font-size:0.8em;word-wrap:break-word;" class=" btn waves-effect" href="#!useranswer">YOUR ANSWERS</a></li>
+                    <li><a style="font-size:0.8em;word-wrap:break-word;" class=" btn waves-effect" href="#!ask">ASK</a></li>
+                      <li><a href="#!" style="font-size:0.8em;word-wrap:break-word;" id="logout" class=" btn waves-effect red">LOGOUT</a></li>
                 </ul>
-
                 <!-- SIDE NAV ITEMS -->
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">messages</a></li>
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                
+                            </div>
+                            <a><img class="circle" src="assets/logo5.png"></a>
+                            <a ><span style="" class="black-text name">askELF</span></a>
+                            
+                        </div>
+                    </li>
+                   
+                   
+                    <li>
+                        <div class="divider"></div>
+                    </li>
+                    
+                    <li><a class=" btn waves-effect" href="#!profile">RECENT QUESTIONS</a></li>
+                    <li><a class=" btn waves-effect" href="#!userquestion">YOUR QUESTIONS</a></li>
+                    <li><a class=" btn waves-effect" href="#!useranswer">YOUR ANSWERS</a></li>
+                    <li><a href="#!" class=" btn waves-effect" href="#!ask">ASK</a></li>
+
+                     <li>
+                        <div class="divider"></div>
+                    </li>
+
+                    <li><a id="logout" class=" btn waves-effect red">LOGOUT</a></li>
+
                 </ul>
             </div>
         </nav>
     </div>
-
     <!-- FAB -->
     <div id='fab' class="fixed-action-btn">
-     
         <a class="btn-floating btn-large tooltipped" data-position="top" data-delay="50" data-tooltip="live support">
           <i style="background-color:#49274A;box-shadow:0px 0px 0px;color:white;text-shadow:1px 1px 2px black" class="large material-icons ">live_help</i>
         </a>
-       
     </div>
-
-
     <!-- ANGULAR VIEW SECTION -->
     <div class="container">
         <div ng-view></div>
     </div>
-
-
-
-
-
     <!-- INDEX SCRIPTS -->
-    
     <!-- EXTERNAL SCRIPT FILES -->
-
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
@@ -80,7 +87,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-messages.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.min.js"></script>
-
     <!-- INTERNAL SCRIPT FILES -->
     <script src="angular/app.js"></script>
     <script src="scripts/main.js" type="text/javascript"></script>
@@ -92,6 +98,8 @@
     <script src="angular/controllers/profile.js" type="text/javascript"></script>
     <script src="angular/controllers/ask.js" type="text/javascript"></script>
     <script src="angular/controllers/questionDetail.js" type="text/javascript"></script>
+    <script src="angular/controllers/userQuestion.js" type="text/javascript"></script>
+    <script src="angular/controllers/userAnswer.js" type="text/javascript"></script>
     <script src="angular/directives/main.js" type="text/javascript"></script>
 </body>
 

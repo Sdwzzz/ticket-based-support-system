@@ -12,7 +12,7 @@ module.exports = (app, responseFormat) => {
     _router.get('/logout', (req, res) => {
 
         // destroy the cookie
-        res.cookie("token", null);
+        res.cookie("token", "");
         let response = responseFormat(false, "successfully logged out !!!", 200, null);
         res.json(response);
 

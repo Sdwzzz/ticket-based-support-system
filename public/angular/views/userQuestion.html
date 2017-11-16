@@ -1,0 +1,85 @@
+<!-- USER QUESTION VIEW -->
+<div style="margin-top:50px" class="row">
+    <!-- HEAD SECTION -->
+    <div class="col s12">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button btn right' data-activates='dropdown1'><i class="material-icons prefix left">sort</i>Filter by</a>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a ng-click="userQuestionCtrl.openQuestion()">open questions</a></li>
+            <li><a ng-click="userQuestionCtrl.closedQuestion()">closed questions</a></li>
+            <li><a ng-click="userQuestionCtrl.allQuestion()">all questions</a></li>
+            <li class="divider"></li>
+        </ul>
+        <div class="col s12 ">
+            <h6 style='background-color:#0E0B16;width:100%;' class="btn"> <span id="userquestiontitle"  class="card white-text ">your questions</span></h6>
+        </div>
+    </div>
+    <!-- RECENT QUESTIONS -->
+    <div style="" class="col s12">
+        <div id='allquestions' class="row">
+            <ul id='recent' ng-repeat="question in userQuestionCtrl.recentQuestions " class="collection" question-directive>
+                <!-- QUESTION CARD -->
+                <li class="collection-item avatar z-depth-5 questioneffect col s12 card-panel ">
+                    <!-- QUESTION STATUS -->
+                    <span ng-if="question.status ==='open' "> <span style='background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span> </span>
+                    <span ng-if="question.status ==='closed' "> <span style='background:red; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;'></span></span>
+                    <!-- AVATAR -->
+                    <img ng-src="assets/{{question.postedBy.gender}}.png" alt="" class="circle"><span style="font-family:'Righteous'">{{question.postedBy.userName}}</span>
+                    <!--  QUESTION TITLE -->
+                    <h4 id='questionTitle' class="title">
+                    <a ng-click="userQuestionCtrl.answerLinkHandler(question._id)" questionId={{question._id}}>{{question.title.toUpperCase()}}</a>
+                </h4>
+                    <hr></hr>
+                    <!-- QUESTION CONTENT -->
+                    <p class="truncate" style="color:white;font-family:">
+                        {{question.question}}
+                    </p>
+                    <!-- QUESTION TYPE -->
+                    <p id="questionType">type : {{question.game}}</p>
+                    <!-- ANSWER LINK -->
+                    <a title="answer" questionId={{question._id}} ng-click="userQuestionCtrl.answerLinkHandler(question._id)" class="secondary-content" style="margin-right:2px;width:15px"><i style="padding-right:3px;width:15px;cursor:pointer" class="material-icons white-text right">edit_mode</i></a>
+                    <!-- POSTED DATE -->
+                    <p style="color:black;font-weight:5em;text-align:right;margin-top:20px;font-family:'Righteous'"> {{question.posted | date : "h:mm a M/d/yy" }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- INFINITE LOADER -->
+    <div id="infiniteLoader" style="text-align:center" class="col s12">
+        <div class="preloader-wrapper  small active ">
+            <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:none;text-align:center" id="questionEnd" class="col s12">
+    <h5 style="font-family: 'Righteous', cursive !important;color:#49274A;text-shadow: 0px 0px 1px #49274A;"><hr style=></hr>End<hr style=""></hr></h5>
+</div>
+<!-- PROFILE SCRIPTS -->
+<script>
+$('.questioneffect').fadeIn("slow");
+
+
+
+$('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: true, // Does not change width of dropdown to that of the activator
+    hover: false, // Activate on hover
+    gutter: 0, // Spacing from edge
+    belowOrigin: true, // Displays dropdown below the button
+    alignment: 'right', // Displays dropdown with edge aligned to the left of button
+    stopPropagation: false // Stops event propagation
+});
+</script>
+</div>

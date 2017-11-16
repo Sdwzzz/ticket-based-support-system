@@ -9,7 +9,13 @@
         <div class="row">
             <div class="col s6">
                 <!-- BACK TO PROFILE LINK -->
-                <a class="btn" href="#!profile"> back to all questions </a>
+                <a ng-show="detailCtrl.comeFrom==='profile'" class="btn" href="#!profile"> back to all questions </a>
+                       <!-- BACK TO USER QUESTION LINK -->
+                <a ng-show="detailCtrl.comeFrom==='userquestion'" class="btn" href="#!userquestion"> back to your questions </a>
+                 <!-- BACK TO USER QUESTION LINK -->
+                <a ng-show="detailCtrl.comeFrom==='useranswer'" class="btn" href="#!useranswer"> back to your Answers </a>
+                <!-- BACK TO PROFILE LINK -->
+                <a ng-show="detailCtrl.comeFrom===undefined" class="btn" href="#!profile"> back to all questions </a>
             </div>
             <!-- STATUS TOGGLE BUTTON -->
             <div ng-show="detailCtrl.user===true" class="col s6 ">
