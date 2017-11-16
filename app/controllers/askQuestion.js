@@ -6,7 +6,7 @@ const _router = express.Router();
 const questionModel = mongoose.model("questionModel");
 const userModel = mongoose.model("userModel");
 const isAllFieldsAvailable = require('../../customMiddlewares/isAllFieldsAvailable');
-const SMTP = require('../../config/SMTP');
+//const SMTP = require('../../config/SMTP');
 const jwtVerification = require('../../customMiddlewares/jwtVerification');
 
 
