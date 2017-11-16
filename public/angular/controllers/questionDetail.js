@@ -1,5 +1,5 @@
 // question detail controller
-app.controller('detailController', ['$http', 'mainService', '$location', '$timeout',"$cookies", function($http, mainService, $location, $timeout,$cookies) {
+app.controller('detailController', ['$http', 'mainService', '$location', '$timeout', "$cookies", function($http, mainService, $location, $timeout, $cookies) {
     let self = this;
     self.questionId = mainService.questionId;
     self.data = {};
@@ -11,13 +11,13 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
 
 
     // check for cookies 
-    if(!($cookies.get('token'))){
-        
+    if (!($cookies.get('token'))) {
+
         // no token redirect to login page
         $location.path('login');
 
         return;
-    } 
+    }
 
     // jwt token parsing
     function parseJwt(token) {
@@ -25,25 +25,25 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
         let base64 = base64Url.replace('-', '+').replace('_', '/');
         return JSON.parse(window.atob(base64));
     };
-   
+
     self.user = parseJwt($cookies.get('token'))
     app.user = self.user;
 
     // store the question id in window localstorage
-    if(self.questionId){
-      window.localStorage.questionId = self.questionId;
+    if (self.questionId) {
+        window.localStorage.questionId = self.questionId;
     }
 
-    
+
 
     // scroll the window to top
     $(window).scrollTop(0);
 
     // check the question id from localstorage
-    if(window.localStorage.questionId){
-      self.questionId =  window.localStorage.questionId;
-      mainService.questionId = window.localStorage.questionId;
-      self.data.questionId = mainService.questionId;
+    if (window.localStorage.questionId) {
+        self.questionId = window.localStorage.questionId;
+        mainService.questionId = window.localStorage.questionId;
+        self.data.questionId = mainService.questionId;
     }
 
     // check question id 
@@ -73,8 +73,17 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
             }
 
 
-
-
+            // fill the edit data fields
+            self.editdata.title = self.questionDetail.title;
+            self.editdata.question = self.questionDetail.question;
+            
+          // fill the raio button in edit dat fields(ng-model dosent suit)
+          $.each($("#optionTypes")[0].children, function(index, value){
+            
+            if($($(value).children()).val() === self.questionDetail.game){
+              $($(value).children()).prop('checked', true);
+            }
+          })
 
         })
         .catch((err) => {
@@ -90,16 +99,11 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
         console.log(self.data);
         $http.post('/api/answer', self.data)
             .then(res => {
+                console.log(res.data);
                 if (!res.data.error) {
-                    let newAnswer = {}
-                    newAnswer.answered = new Date();
-                    newAnswer.answer = self.data.answer;
-                    newAnswer.votes = 0;
-                    newAnswer.answeredBy = {};
-                    newAnswer.answeredBy.userName = app.user.userName;
-                    newAnswer.answeredBy.gender = app.user.gender;
 
-                    self.answers.push(newAnswer);
+
+                    self.answers.push(res.data.data);
 
                     //clear the answer text area
                     self.data.answer = " ";
@@ -264,16 +268,12 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
     // edit form
     $("#edit").click(function() {
 
-        // fill the edit data field
-        self.editdata.title = self.questionDetail.title;
-        self.editdata.question = self.questionDetail.question;
-        self.editdata.game = self.questionDetail.game;
 
         $("#editForm").toggle("slow");
     })
 
-    $("#editCancel").click(function(){
-       $('#editForm').toggle("slow");
+    $("#editCancel").click(function() {
+        $('#editForm').toggle("slow");
 
     });
 
@@ -281,16 +281,19 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
         let data = {}
         data.updateQuestion = self.editdata;
         data.questionId = self.questionId;
-        
+        console.log(data);
         $http.post('/api/editquestion', data)
             .then(res => {
                 // update question in current view
-                if(!res.data.error){
-                  self.questionDetail.title = self.editdata.title;
-                  self.questionDetail.question = self.editdata.question;
-                  self.questionDetail.game = self.editdata.game;
+                if (!res.data.error) {
+                    self.questionDetail.title = self.editdata.title;
+                    self.questionDetail.question = self.editdata.question;
+                    self.questionDetail.game = self.editdata.game;
 
-                  $('#editForm').toggle("slow");
+                    $('#editForm').toggle("slow");
+
+                    // scroll the window to top
+                    $(window).scrollTop(0);
                 }
             })
             .catch(err => {
@@ -300,30 +303,30 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
 
     }
 
-  // delete the answer
-  self.deleteAnswer = function($index){
-      console.log($index);
+    // delete the answer
+    self.deleteAnswer = function($index) {
+        console.log($index);
 
-      let data = {}
-      data.answerId = self.questionDetail.answers[$index]._id;
-      
-      $http.post('/api/deleteanswer', data)
-      .then(res =>{
-        if(!res.data.error){
-          self.answers.splice($index,1);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
+        let data = {}
+        data.answerId = self.questionDetail.answers[$index]._id;
+
+        $http.post('/api/deleteanswer', data)
+            .then(res => {
+                if (!res.data.error) {
+                    self.answers.splice($index, 1);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
 
-  self.isUserAnswer = function($index){
-    let userId = self.questionDetail.answers[$index].answeredBy._id;
-    let currentUser = app.user._id;
-    return (userId === currentUser);
-  }
+    self.isUserAnswer = function($index) {
+        let userId = self.questionDetail.answers[$index].answeredBy._id;
+        let currentUser = app.user._id;
+        return (userId === currentUser);
+    }
 
 
 }])

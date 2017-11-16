@@ -21,7 +21,7 @@ module.exports = (app, responseFormat) => {
         	if(err){
         		console.log(err);
         	}
-
+            
         	if(!answer){
         		    let response = responseFormat(true, 'there is no answer available with this answer id', 400, null);
                     return res.json(response);

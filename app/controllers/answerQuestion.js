@@ -193,7 +193,7 @@ module.exports = (app, responseFormat) => {
 
 
 
-                            let response = responseFormat(false, "answer successfully posted !!", 200, null);
+                            let response = responseFormat(false, "answer successfully posted !!", 200, newAnswer);
                             return res.json(response);
                         })
                     })
