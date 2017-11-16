@@ -76,14 +76,14 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
             // fill the edit data fields
             self.editdata.title = self.questionDetail.title;
             self.editdata.question = self.questionDetail.question;
-            
-          // fill the raio button in edit dat fields(ng-model dosent suit)
-          $.each($("#optionTypes")[0].children, function(index, value){
-            
-            if($($(value).children()).val() === self.questionDetail.game){
-              $($(value).children()).prop('checked', true);
-            }
-          })
+
+            // fill the raio button in edit dat fields(ng-model dosent suit)
+            $.each($("#optionTypes")[0].children, function(index, value) {
+
+                if ($($(value).children()).val() === self.questionDetail.game) {
+                    $($(value).children()).prop('checked', true);
+                }
+            })
 
         })
         .catch((err) => {

@@ -4,16 +4,104 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
     this.name = 'profile';
     self.recentQuestions = [];
     self.skip = 0;
-   
-  
+    self.questionUrl = '/api/profile/';
+    self.profileTitle = "all questions";
+
+
+
+
+    self.requestAgain = function() {
+
+
+        // request for recent questions
+        $http.get(self.questionUrl + self.skip)
+            .then((response) => {
+
+
+                if (response.data.error) {
+                    $location.path('login');
+                } else {
+                    self.recentQuestions = response.data.data;
+
+                }
+
+
+
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+    }
+
+
+
+    self.closedQuestion = function() {
+        let status = 'closed';
+        self.stopscrolling = false;
+        self.profileTitle = "closed questions";
+        window.localStorage.currentStatus = 'closedQuestions';
+        $('#questionEnd').hide();
+
+        self.skip = 0;
+        self.questionUrl = '/api/statusbasedquestion/' + status + "/";
+
+        self.requestAgain();
+
+    }
+
+
+    self.openQuestion = function() {
+        let status = 'open';
+        self.stopscrolling = false;
+        self.profileTitle = "open questions";
+        window.localStorage.currentStatus = 'openQuestions';
+        $('#questionEnd').hide();
+
+        self.skip = 0;
+        self.questionUrl = '/api/statusbasedquestion/' + status + "/";
+
+        self.requestAgain();
+
+    }
+
+    self.allQuestion = function() {
+
+        self.stopscrolling = false;
+        self.profileTitle = "all questions";
+        window.localStorage.currentStatus = 'allQuestions';
+        $('#questionEnd').hide();
+
+        self.skip = 0;
+        self.questionUrl = '/api/profile/';
+
+        self.requestAgain();
+
+    }
+
+
+
+
+
+    // check for state fo the all questions
+    if (window.localStorage.currentStatus) {
+        if (window.localStorage.currentStatus === 'closedQuestions') {
+            self.closedQuestion()
+        } else if (window.localStorage.currentStatus === 'openQuestions') {
+            self.openQuestion()
+        } else if (window.localStorage.currentStatus === 'allQuestions') {
+            self.allQuestion();
+        }
+    }
+
     // check for cookies 
-    if(!($cookies.get('token'))){
-        
+    if (!($cookies.get('token'))) {
+
         // no token redirect to login page
         $location.path('login');
 
         return;
-    } 
+    }
 
     // jwt token parsing
     function parseJwt(token) {
@@ -21,14 +109,14 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         let base64 = base64Url.replace('-', '+').replace('_', '/');
         return JSON.parse(window.atob(base64));
     };
-   
+
     self.user = parseJwt($cookies.get('token'))
-         app.user = self.user;
+    app.user = self.user;
 
     // request for recent questions
-    $http.get('/api/profile/' + self.skip)
+    $http.get(self.questionUrl + self.skip)
         .then((response) => {
-            
+
 
             if (response.data.error) {
                 $location.path('login');
@@ -43,6 +131,9 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
         .catch((err) => {
             console.log(err);
         })
+
+
+
 
     // answer link handler
     self.answerLinkHandler = function(questionId) {
@@ -63,14 +154,14 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
     // infinite scrolling
     $(window).scroll(function() {
-        
-     
-        
+
+
+
         if ($(document).height() - $(window).height() - $(window).scrollTop() === 0) {
-            
+
             // check if scrolling is in profile view
-            if($location.path() !== "/profile"){
-                return ;
+            if ($location.path() !== "/profile") {
+                return;
             }
 
 
@@ -83,7 +174,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
 
                 // request for recent questions
-                $http.get('/api/profile/' + self.skip)
+                $http.get(self.questionUrl + self.skip)
                     .then((response) => {
                         console.log(response);
                         $('#infiniteLoader').hide();
@@ -114,8 +205,12 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
         }
 
-
     }) // scroll event end
+
+
+
+
+
 
 
 }]) // end-controller

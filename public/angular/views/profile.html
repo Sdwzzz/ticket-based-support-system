@@ -1,6 +1,20 @@
 <!-- PROFILE VIEW -->
-<div  style="margin-top:50px" class="row">
-    
+<div style="margin-top:50px" class="row">
+    <!-- HEAD SECTION -->
+    <div class="col s12">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button btn right' data-activates='dropdown1'><i class="material-icons prefix left">sort</i>Filter by</a>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a ng-click="profileCtrl.openQuestion()">open questions</a></li>
+            <li><a ng-click="profileCtrl.closedQuestion()">closed questions</a></li>
+            <li><a ng-click="profileCtrl.allQuestion()">all questions</a></li>
+            <li class="divider"></li>
+        </ul>
+        <div class="col s12 ">
+            <h6 style='background-color:#0E0B16;width:100%;' class="btn"> <span id="profiletitle"  class="card white-text ">{{profileCtrl.profileTitle}}</span></h6>
+        </div>
+    </div>
     <!-- RECENT QUESTIONS -->
     <div style="" class="col s12">
         <div id='allquestions' class="row">
@@ -48,12 +62,24 @@
         </div>
     </div>
 </div>
-
 <div style="display:none;text-align:center" id="questionEnd" class="col s12">
     <h5 style="font-family: 'Righteous', cursive !important;color:#49274A;text-shadow: 0px 0px 1px #49274A;"><hr style=></hr>End<hr style=""></hr></h5>
 </div>
 <!-- PROFILE SCRIPTS -->
 <script>
 $('.questioneffect').fadeIn("slow");
+
+
+
+$('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    constrainWidth: true, // Does not change width of dropdown to that of the activator
+    hover: false, // Activate on hover
+    gutter: 0, // Spacing from edge
+    belowOrigin: true, // Displays dropdown below the button
+    alignment: 'right', // Displays dropdown with edge aligned to the left of button
+    stopPropagation: false // Stops event propagation
+});
 </script>
 </div>
