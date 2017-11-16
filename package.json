@@ -28,8 +28,5 @@
   },
   "devDependencies": {
     "supervisor": "^0.12.0"
-  },
-  "engines": {
-    "node": "7.6"
   }
 }
