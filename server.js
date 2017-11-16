@@ -17,7 +17,7 @@ app.set('secret', secret);
 
 
 // set the port
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 // initialize the database connection
 require('./config/dbConfig');
