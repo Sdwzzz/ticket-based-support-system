@@ -2,6 +2,7 @@ $(document).ready(function(){
      
      // triger collapsable nav-bar(this is materializecss spec)
 	 $(".button-collapse").sideNav();
+	 $("#fab").fadeIn("slow");
      
      // smooth  nav section fade in effect
 	 $("#logo").fadeIn("slow", function(){
@@ -9,7 +10,7 @@ $(document).ready(function(){
 	 		$("#setting").fadeIn("slow", function(){
 	 			$("#profile").fadeIn("slow",function(){
 	 				$("#home").fadeIn("slow", function(){
-	 					$("#fab").fadeIn("slow");
+	 					
 	 				});
 	 			})
 	 		})
@@ -54,6 +55,13 @@ $(document).ready(function(){
   })
 
 
+ 
+// GO TOP 
+$('#gotop').click(function(){
+ $("html, body").animate({ scrollTop: 0 }, 700);
+        
+ 
+})
 
 
 })//end

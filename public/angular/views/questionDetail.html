@@ -9,13 +9,13 @@
         <div class="row">
             <div class="col s6">
                 <!-- BACK TO PROFILE LINK -->
-                <a ng-show="detailCtrl.comeFrom==='profile'" class="btn" href="#!profile"> back to all questions </a>
+                <a ng-show="detailCtrl.comeFrom==='profile'" class="btn" href="#!profile"> back  </a>
                        <!-- BACK TO USER QUESTION LINK -->
-                <a ng-show="detailCtrl.comeFrom==='userquestion'" class="btn" href="#!userquestion"> back to your questions </a>
+                <a ng-show="detailCtrl.comeFrom==='userquestion'" class="btn" href="#!userquestion"> back  </a>
                  <!-- BACK TO USER QUESTION LINK -->
-                <a ng-show="detailCtrl.comeFrom==='useranswer'" class="btn" href="#!useranswer"> back to your Answers </a>
+                <a ng-show="detailCtrl.comeFrom==='useranswer'" class="btn" href="#!useranswer"> back  </a>
                 <!-- BACK TO PROFILE LINK -->
-                <a ng-show="detailCtrl.comeFrom===undefined" class="btn" href="#!profile"> back to all questions </a>
+                <a ng-show="detailCtrl.comeFrom===undefined" class="btn" href="#!profile"> back </a>
             </div>
             <!-- STATUS TOGGLE BUTTON -->
             <div ng-show="detailCtrl.user===true" class="col s6 ">
@@ -46,10 +46,10 @@
         <i ng-click="detailCtrl.downvote()" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable  waves-effect waves-dark">arrow_drop_down</i>
         <i ng-click="detailCtrl.upvote()" style="color:#26a69a;cursor:pointer;margin-top:20px;padding:0" class="material-icons medium hoverable waves-effect waves-dark">arrow_drop_up</i>
         <!-- DELETE BTN -->
-        <a ng-show="detailCtrl.user===true" ng-click="detailCtrl.deleteQuestion()" class="btn red "> delete </a>
+        <a ng-show="detailCtrl.user===true" style="margin:12px" ng-click="detailCtrl.deleteQuestion()" class="btn red "> delete </a>
         <!-- EDIT BTN -->
         
-        <a id="edit" ng-show="detailCtrl.user===true" style="background-color:background-color:#49274A !important"  class="waves-effect waves-light btn "><i style="width:25px" class="material-icons right">edit_mode</i>EDIT</a>
+        <a id="edit" ng-show="detailCtrl.user===true" style="background-color:background-color:#49274A !important;margin:12px "  class="waves-effect waves-light btn "><i style="width:25px" class="material-icons right">edit_mode</i>EDIT</a>
     </div>
     
    <!--  EDIT FORM -->
