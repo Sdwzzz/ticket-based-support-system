@@ -93,10 +93,10 @@ module.exports = (app, responseFormat) => {
 
 
                 let userData = {}
-                userData._id = user._id;
-                userData.userName = user.userName;
-                userData.gender = user.gender;
-                userData.email = user.email;
+                userData._id = newUser._id;
+                userData.userName = newUser.userName;
+                userData.gender = newUser.gender;
+                userData.email = newUser.email;
 
 
                 // create 24 hrs valid jwt token   and set to the cookies

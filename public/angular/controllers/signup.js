@@ -1,5 +1,5 @@
 // signup controller
-app.controller('signupController', ['$http', function($http) {
+app.controller('signupController', ['$http','$location', function($http,$location) {
     let self = this;
     this.loader = false;
     this.message = null;
@@ -22,7 +22,11 @@ app.controller('signupController', ['$http', function($http) {
 
                     if (response.data.error) {
                         self.message = response.data.message;
+                    } else {
+                        $location.path('profile');
                     }
+
+
 
                 })
 
