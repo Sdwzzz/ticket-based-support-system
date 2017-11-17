@@ -1,5 +1,5 @@
 # askElf
-Q/A support system for geme related doubts
+Q/A support system for game related doubts
 
 >> if you stuck in any of your intresting game levels or you want some
  cheat sheet for your favourite game. here you get answer for all your gamming related questions.
@@ -161,6 +161,16 @@ body-parameters : title (value:'short title of that question')
                   question (value:'elobrate detail of that question')
                   game (value:'type of game related question is this')
 end point for post new questions
+
+
+```
+
+```
+17. api/editquestion (POST)
+body-parameters : questionId (value:'id of the question you want to edit')
+                  updateQuestion (value:'it should be an object contains updated properties')
+                  
+end point for edit the question
 
 
 ```
