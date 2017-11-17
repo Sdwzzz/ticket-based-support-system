@@ -101,12 +101,12 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
         self.answerpostloader = true;
 
         console.log(self.data);
-        $http.post('/api/answer', self.data)
+        $http.post('/api/newanswer', self.data)
             .then(res => {
                 console.log(res.data);
                 if (!res.data.error) {
 
-
+                    res.data.data.answeredBy = app.user;
                     self.answers.push(res.data.data);
 
                     //clear the answer text area
