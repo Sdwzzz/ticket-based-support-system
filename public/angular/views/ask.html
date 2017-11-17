@@ -1,39 +1,32 @@
 <div style="margin-top:50px" class="row">
-    
-
     <!-- ASK QUESTION FORM -->
     <div class="col s12">
         <a class="btn" href="#!profile"> back to all questions </a>
         <div id="askquestion" class="row">
             <!-- ERROR MESSAGE -->
-            <div id='errorMessage'  ng-if='askCtrl.message !==null' class="col s12 card ">
+            <div id='errorMessage' ng-if='askCtrl.message !==null' class="col s12 card ">
                 <h5>{{askCtrl.message}}
                 </h5>
             </div>
-
             <!-- LOADER -->
             <div ng-if="askCtrl.loader===true" class="progress col s12">
                 <div class="indeterminate"></div>
             </div>
-
             <!-- QUESTION FORM -->
             <form syle="" ng-submit='askCtrl.questionHandler()' class="col s12">
                 <div id="logineffect" style="padding:5%;margin-bottom:10px;" class="row card">
-
                     <!-- QUESTION TITLE -->
                     <div class="input-field col s12 ">
                         <i style="color:#49274A" class="material-icons prefix ">title</i>
                         <input id="icon_prefix" type="text" ng-model="askCtrl.data.title" class="validate" required>
                         <label for="icon_prefix">Title</label>
                     </div>
-
                     <!-- QUESTION -->
                     <div class="input-field col s12">
                         <i style="color:#49274A" class="material-icons prefix">edit_mode</i>
                         <textarea id="textarea1" ng-model="askCtrl.data.question" class="materialize-textarea" required></textarea>
                         <label for="textarea1">question</label>
                     </div>
-
                     <!-- OPTIONS FOR TYPE OF GAME -->
                     <div class="col s12 ">
                         <h6>choose the type of game</h6>
@@ -54,7 +47,6 @@
                             <label for="test4">others</label>
                         </p>
                     </div>
-
                     <!-- POST BTN -->
                     <div class="input-field col s12">
                         <button style="background-color:#49274A" class="btn waves-effect waves-light" type="submit" name="action">post
@@ -65,15 +57,14 @@
             </form>
         </div>
     </div>
-
     <!-- ASK QUESTION SCRIPTS -->
     <script>
     $('#askquestion').hide();
     $('#askquestion').fadeIn("slow");
     $('select').material_select();
-    $('.ask').css('backgroundColor','black');
-    $('.recentquestions').css('backgroundColor','#26a69a');
-    $('.yourquestions').css('backgroundColor','#26a69a');
-    $('.youranswers').css('backgroundColor','#26a69a');
+    $('.ask').css('backgroundColor', 'black');
+    $('.recentquestions').css('backgroundColor', '#26a69a');
+    $('.yourquestions').css('backgroundColor', '#26a69a');
+    $('.youranswers').css('backgroundColor', '#26a69a');
     </script>
 </div>

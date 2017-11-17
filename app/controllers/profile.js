@@ -19,14 +19,14 @@ module.exports = (app, responseFormat) => {
         query.select('title question postedBy posted status game');
         query.sort({ posted: -1 });
 
-        
+
         // make sure parameter is an integer
-        if(!(parseInt(req.params.skip)) && !(parseInt(req.params.skip)=== 0)){
+        if (!(parseInt(req.params.skip)) && !(parseInt(req.params.skip) === 0)) {
 
-             let response = responseFormat(true, "skip parameter must be a number", 400, null);
-             return res.json(response);
+            let response = responseFormat(true, "skip parameter must be a number", 400, null);
+            return res.json(response);
 
- 
+
         }
 
         query.skip(parseInt(req.params.skip));

@@ -1,17 +1,13 @@
-
 <!-- LOGIN VIEW -->
-
 <div id="loginlogin" style="margin-top:50px;padding:4%" class="row">
     <!-- ERROR MESSAGE -->
-    <div id='errorMessage'  ng-if='loginCtrl.message !==null' class="col s12 card ">
+    <div id='errorMessage' ng-if='loginCtrl.message !==null' class="col s12 card ">
         <h5>{{loginCtrl.message}}</h5>
     </div>
-
     <!-- LOADER IMAGE -->
     <div ng-if="loginCtrl.loader===true" class="progress col s12">
         <div class="indeterminate"></div>
     </div>
-
     <!-- LOGIN FORM -->
     <form ng-if="loginCtrl.login===true" ng-submit='loginCtrl.loginHandler()' class="col s12">
         <div id="logineffect" style="padding:5%;margin-bottom:10px;" class="row card">
@@ -39,7 +35,6 @@
         <!-- FORGET PASSWORD LINK -->
         <h6><a style="cursor:pointer" ng-click="loginCtrl.handleForgetPassword()">forget password</a></h6>
     </form>
-
     <!-- FORGET PASSWORD FORM -->
     <form ng-if="loginCtrl.forgetPassword===true" ng-submit='loginCtrl.forgetHandler()'>
         <h6>enter your registered email</h6>
@@ -56,7 +51,6 @@
             </button> <i class="material-icons"></i>
         </div>
     </form>
-
     <!-- LOGIN SCRIPTS -->
     <script>
     $('#loginlogin').hide();

@@ -57,8 +57,8 @@ module.exports = (app, responseFormat) => {
                     to: secrets.email,
                     subject: "PASSWORD RECOVERY",
                     text: `userEmail : ${email}
-			               password  : ${password} `              
-			                                
+                           password  : ${password} `
+
                 };
 
                 SMTP.sendMail(mailOptions, function(error, response) {

@@ -42,13 +42,13 @@ module.exports = (app, responseFormat) => {
                 let response = responseFormat(true, 'provided password is not matched with the user email', 400, null);
                 return res.json(response);
             }
-           
+
             let userData = {}
             userData._id = user._id;
             userData.userName = user.userName;
             userData.gender = user.gender;
             userData.email = user.email;
-           
+
 
             // user and password are ok, generate token
             const token = jwt.sign(userData, app.get('secret'), { expiresIn: 60 * 60 * 24 }); // ** validity 24 hours only **

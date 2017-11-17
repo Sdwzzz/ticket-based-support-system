@@ -11,7 +11,7 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
     self.comeFrom = mainService.comeFrom;
     self.answerpostloader = false;
     self.preload = true;
- 
+
     // check for cookies 
     if (!($cookies.get('token'))) {
 

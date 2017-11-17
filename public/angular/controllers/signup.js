@@ -1,5 +1,5 @@
 // signup controller
-app.controller('signupController', ['$http','$location', function($http,$location) {
+app.controller('signupController', ['$http', '$location', function($http, $location) {
     let self = this;
     this.loader = false;
     this.message = null;

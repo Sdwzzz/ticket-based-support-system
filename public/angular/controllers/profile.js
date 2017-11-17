@@ -12,7 +12,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
 
 
     self.requestAgain = function() {
-      
+
         self.preload = true;
         // request for recent questions
         $http.get(self.questionUrl + self.skip)
@@ -95,7 +95,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
             self.allQuestion();
         }
     }
-   
+
     // check for cookies 
     if (!($cookies.get('token'))) {
 

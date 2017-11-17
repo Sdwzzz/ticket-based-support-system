@@ -1,8 +1,8 @@
 // home controller
-app.controller('homeController',[function(){
+app.controller('homeController', [function() {
 
-	let self = this;
+    let self = this;
 
-	this.name = 'awesome'
+    this.name = 'awesome'
 
-}])// cotroller-end
+}]) // cotroller-end

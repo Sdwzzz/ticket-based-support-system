@@ -12,7 +12,7 @@ const questionModel = mongoose.model('questionModel');
 
 module.exports = (app, responseFormat) => {
 
-    _router.post('/editquestion',jwtVerification, (req, res) => {
+    _router.post('/editquestion', jwtVerification, (req, res) => {
         // check for empty field
         if (!req.body.questionId || !req.body.updateQuestion) {
             let response = responseFormat(true, 'some input parameters are missing', 400, null);
@@ -36,8 +36,8 @@ module.exports = (app, responseFormat) => {
                 return res.json(response);
             }
 
-            
-            if (req.body.updateQuestion.title !==undefined) {
+
+            if (req.body.updateQuestion.title !== undefined) {
                 if (req.body.updateQuestion.title.length > 0) {
                     question.title = req.body.updateQuestion.title;
                 } else {
@@ -46,7 +46,7 @@ module.exports = (app, responseFormat) => {
                 }
 
             }
-            if (req.body.updateQuestion.question !==undefined) {
+            if (req.body.updateQuestion.question !== undefined) {
                 if (req.body.updateQuestion.question.length > 0) {
                     question.question = req.body.updateQuestion.question;
                 } else {
@@ -55,7 +55,7 @@ module.exports = (app, responseFormat) => {
                 }
 
             }
-            if (req.body.updateQuestion.game !==undefined) {
+            if (req.body.updateQuestion.game !== undefined) {
                 if (req.body.updateQuestion.game.length > 0) {
                     question.game = req.body.updateQuestion.game;
 

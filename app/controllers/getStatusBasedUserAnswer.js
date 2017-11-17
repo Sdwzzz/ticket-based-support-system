@@ -46,7 +46,7 @@ module.exports = (app, responseFormat) => {
             }
 
             let data = answers.filter(answer => {
-                
+
                 if (answer.question) {
                     if (req.params.status === answer.question.status) {
                         return answer;
@@ -55,7 +55,7 @@ module.exports = (app, responseFormat) => {
 
             })
 
-           
+
 
             let response = responseFormat(false, "your answers", 200, data);
             return res.json(response);

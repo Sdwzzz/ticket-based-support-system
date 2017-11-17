@@ -9,25 +9,25 @@ const jwtVerification = require('../../customMiddlewares/jwtVerification');
 
 module.exports = (app, responseFormat) => {
 
-	_router.post('/deleteanswer',jwtVerification, (req, res) => {
-         
-         // check for empty field
+    _router.post('/deleteanswer', jwtVerification, (req, res) => {
+
+        // check for empty field
         if (!req.body.answerId) {
             let response = responseFormat(true, 'answer id is missing', 400, null);
             return res.json(response);
         }
 
-        answerModel.findById({"_id":req.body.answerId}, function(err, answer){
-        	if(err){
-        		console.log(err);
-        	}
-            
-        	if(!answer){
-        		    let response = responseFormat(true, 'there is no answer available with this answer id', 400, null);
-                    return res.json(response);
-        	}
+        answerModel.findById({ "_id": req.body.answerId }, function(err, answer) {
+            if (err) {
+                console.log(err);
+            }
 
-        	if (!(req.decoded._id === answer.answeredBy.toString())) {
+            if (!answer) {
+                let response = responseFormat(true, 'there is no answer available with this answer id', 400, null);
+                return res.json(response);
+            }
+
+            if (!(req.decoded._id === answer.answeredBy.toString())) {
                 let response = responseFormat(true, 'you are not authorize to delete this answer', 400, null);
                 return res.json(response);
             }
@@ -43,10 +43,10 @@ module.exports = (app, responseFormat) => {
             })
         })
 
-	}) // end
+    }) // end
 
 
-	// mount the router as an app level middleware
-	app.use('/api',_router);
+    // mount the router as an app level middleware
+    app.use('/api', _router);
 
 } // end

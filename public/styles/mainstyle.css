@@ -36,6 +36,7 @@ nav {
     margin-right: 5px;
 }
 
+
 /* .side-nav li>a {
 
     font-family: 'Righteous', cursive;
@@ -64,9 +65,8 @@ nav {
     }
 }
 
-.side-nav {
-    
-}
+.side-nav {}
+
 
 
 
@@ -111,6 +111,7 @@ nav {
 
 
 
+
 /* label color */
 
 .input-field label {
@@ -123,11 +124,13 @@ nav {
 
 
 
+
 /* label focus color */
 
 .input-field input[type=text]:focus+label {
     color: #000;
 }
+
 
 
 
@@ -148,6 +151,7 @@ nav {
 
 
 
+
 /* valid color */
 
 .input-field input[type=text].valid {
@@ -161,12 +165,14 @@ nav {
 
 
 
+
 /* invalid color */
 
 .input-field input[type=text].invalid {
     border-bottom: 3px solid #F81B84;
     box-shadow: 0 2px 0 0 #F81B84;
 }
+
 
 
 
@@ -202,6 +208,7 @@ nav {
 
 
 
+
 /* signup style */
 
 #errorMessage {
@@ -217,6 +224,7 @@ nav {
     font-size: 1.4em;
     font-weight: 3em;
 }
+
 
 
 
@@ -259,52 +267,53 @@ nav {
     text-align: right;
     margin-top: 20px;
     font-family: 'Righteous';
-    background-color:#49274A
+    background-color: #49274A
 }
 
+
 /* question detail view */
+
 #qestDetail {
-    background-color:#49274A !important;
+    background-color: #49274A !important;
 }
+
 #qestDetail h6 {
-    text-align:center;
-    color:white;
+    text-align: center;
+    color: white;
 }
+
 
 
 
 /* profile */
 
 #profiletitle {
-     padding: 4px;
+    padding: 4px;
     border-radius: 2px;
     background-color: #0E0B16;
     box-shadow: 0px 0px 2px black;
     margin-left: 2px;
     text-shadow: 1px 1px 2px black;
-     font-family: 'Righteous';
+    font-family: 'Righteous';
 }
 
 #userquestiontitle {
-     padding: 4px;
+    padding: 4px;
     border-radius: 2px;
     background-color: #0E0B16;
     box-shadow: 0px 0px 2px black;
     margin-left: 2px;
     text-shadow: 1px 1px 2px black;
-     font-family: 'Righteous';
+    font-family: 'Righteous';
 }
 
 
 #useranswertitle {
-     padding: 4px;
+    padding: 4px;
     border-radius: 2px;
     background-color: #0E0B16;
     box-shadow: 0px 0px 2px black;
     margin-left: 2px;
     text-shadow: 1px 1px 2px black;
-     font-family: 'Righteous';
+    font-family: 'Righteous';
 }
-
-
- 

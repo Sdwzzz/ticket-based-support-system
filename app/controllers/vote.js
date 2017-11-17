@@ -179,7 +179,7 @@ module.exports = (app, responseFormat) => {
 
 
 
-                
+
 
             } // end of answer vote
 

@@ -39,14 +39,14 @@ app.config(function($routeProvider) {
             controllerAs: 'detailCtrl'
         })
         .when('/userquestion', {
-            templateUrl : '../angular/views/userQuestion.html',
-            controller : 'userQuestionController',
-            controllerAs : 'userQuestionCtrl'
+            templateUrl: '../angular/views/userQuestion.html',
+            controller: 'userQuestionController',
+            controllerAs: 'userQuestionCtrl'
         })
         .when('/useranswer', {
-            templateUrl : '../angular/views/userAnswer.html',
-            controller :'userAnswerController',
-            controllerAs : 'userAnswerCtrl'
+            templateUrl: '../angular/views/userAnswer.html',
+            controller: 'userAnswerController',
+            controllerAs: 'userAnswerCtrl'
         })
 
 

@@ -10,20 +10,20 @@ const jwtVerification = require('../../customMiddlewares/jwtVerification');
 
 module.exports = (app, responseFormat) => {
 
-	_router.get('/userquestion/:skip',jwtVerification, (req, res) => {
-          
-        let query = questionModel.find({'postedBy': mongoose.Types.ObjectId(req.decoded._id)});
+    _router.get('/userquestion/:skip', jwtVerification, (req, res) => {
+
+        let query = questionModel.find({ 'postedBy': mongoose.Types.ObjectId(req.decoded._id) });
         query.select('title question postedBy posted status game');
         query.sort({ posted: -1 });
-       
+
 
         // make sure parameter is an integer
-        if(!(parseInt(req.params.skip)) && !(parseInt(req.params.skip)=== 0)){
+        if (!(parseInt(req.params.skip)) && !(parseInt(req.params.skip) === 0)) {
 
-        	 let response = responseFormat(true, "skip parameter must be a number", 400, null);
-             return res.json(response);
+            let response = responseFormat(true, "skip parameter must be a number", 400, null);
+            return res.json(response);
 
- 
+
         }
 
         query.skip(parseInt(req.params.skip));
@@ -32,7 +32,7 @@ module.exports = (app, responseFormat) => {
 
 
 
-        query.populate({ path: 'postedBy', model: "userModel", select: { "userName": 1, "gender":1 } }).exec((err, questions) => {
+        query.populate({ path: 'postedBy', model: "userModel", select: { "userName": 1, "gender": 1 } }).exec((err, questions) => {
 
             if (err) {
                 console.log(err);
@@ -43,12 +43,12 @@ module.exports = (app, responseFormat) => {
 
         })
 
- 
-
-	}) // end
 
 
-	// mount the router as an app level middleware
-	app.use('/api',_router);
+    }) // end
+
+
+    // mount the router as an app level middleware
+    app.use('/api', _router);
 
 } // end

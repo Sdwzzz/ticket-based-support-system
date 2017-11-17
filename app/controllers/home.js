@@ -8,15 +8,15 @@ const _router = express.Router()
 
 module.exports = (app, responseFormat) => {
 
-	_router.get('/home', (req, res) => {
+    _router.get('/home', (req, res) => {
 
-		let response = responseFormat(false,'welcome to ask elf',200,null)
+        let response = responseFormat(false, 'welcome to ask elf', 200, null)
 
-		res.json(response);
-	}) // end
+        res.json(response);
+    }) // end
 
 
-	// mount the router as an app level middleware
-	app.use('/api',_router);
+    // mount the router as an app level middleware
+    app.use('/api', _router);
 
 } // end

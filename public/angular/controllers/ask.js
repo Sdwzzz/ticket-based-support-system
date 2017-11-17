@@ -1,5 +1,5 @@
 // ask controller
-app.controller('askController', ["$http","$location","$cookies", function($http, $location,$cookies) {
+app.controller('askController', ["$http", "$location", "$cookies", function($http, $location, $cookies) {
     let self = this;
     self.data = {};
     self.message = null;
@@ -26,10 +26,10 @@ app.controller('askController', ["$http","$location","$cookies", function($http,
                     if (response.data.error) {
                         self.message = response.data.message;
                     }
-                   
-                   if(!response.data.error){
-                     $location.path('profile');
-                   }
+
+                    if (!response.data.error) {
+                        $location.path('profile');
+                    }
 
                 })
 
