@@ -55,6 +55,13 @@ $(document).ready(function(){
   })
 
 
+  // close sidenav at button click
+  $('#close').click(function(){
+  	 // Hide sideNav
+  $('.button-collapse').sideNav('hide');
+
+  })
+
  
 // GO TOP 
 $('#gotop').click(function(){
