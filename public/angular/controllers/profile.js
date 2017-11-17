@@ -6,13 +6,14 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
     self.skip = 0;
     self.questionUrl = '/api/profile/';
     self.profileTitle = "all questions";
+    self.preload = true;
 
 
 
 
     self.requestAgain = function() {
-
-
+      
+        self.preload = true;
         // request for recent questions
         $http.get(self.questionUrl + self.skip)
             .then((response) => {
@@ -21,6 +22,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
                 if (response.data.error) {
                     $location.path('login');
                 } else {
+                    self.preload = false;
                     self.recentQuestions = response.data.data;
 
                 }
@@ -122,6 +124,7 @@ app.controller('profileController', ["$http", "$location", "mainService", "$cook
             if (response.data.error) {
                 $location.path('login');
             } else {
+                self.preload = false;
                 self.recentQuestions = response.data.data;
 
             }

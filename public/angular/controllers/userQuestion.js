@@ -1,20 +1,20 @@
 // user question controller
 
-app.controller("userQuestionController",["$http", "$location", "mainService", "$cookies", function($http, $location, mainService, $cookies) {
-	let self = this;
+app.controller("userQuestionController", ["$http", "$location", "mainService", "$cookies", function($http, $location, mainService, $cookies) {
+    let self = this;
 
 
-	 self.recentQuestions = [];
+    self.recentQuestions = [];
     self.skip = 0;
     self.questionUrl = '/api/userquestion/';
     self.profileTitle = "all questions";
-
+    self.preload = true;
 
 
 
     self.requestAgain = function() {
 
-
+        self.preload = true;
         // request for recent questions
         $http.get(self.questionUrl + self.skip)
             .then((response) => {
@@ -23,6 +23,7 @@ app.controller("userQuestionController",["$http", "$location", "mainService", "$
                 if (response.data.error) {
                     $location.path('login');
                 } else {
+                    self.preload = false;
                     self.recentQuestions = response.data.data;
 
                 }
@@ -123,6 +124,7 @@ app.controller("userQuestionController",["$http", "$location", "mainService", "$
             if (response.data.error) {
                 $location.path('login');
             } else {
+                self.preload = false;
                 self.recentQuestions = response.data.data;
 
             }

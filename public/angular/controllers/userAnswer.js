@@ -7,25 +7,25 @@ app.controller('userAnswerController', ["$http", "$location", "mainService", "$c
     self.questionUrl = '/api/useranswer/';
     self.profileTitle = "all answers";
     self.duplicateQuestions = [];
-
+    self.preload = true;
 
 
 
 
     self.requestAgain = function() {
 
-
+        self.preload = true;
         // request for recent questions
         $http.get(self.questionUrl + self.skip)
             .then((response) => {
 
-         
+
                 if (response.data.error) {
                     $location.path('login');
                 } else {
                     self.recentQuestions = [];
                     self.duplicateQuestions = [];
-
+                    self.preload = false;
                     for (let i in response.data.data) {
 
                         if (response.data.data[i].question === null) {
@@ -33,18 +33,18 @@ app.controller('userAnswerController', ["$http", "$location", "mainService", "$c
                         } else {
 
                             //duplicate question check
-                            if(self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1){
+                            if (self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1) {
 
                             } else {
-                                
-                                 self.duplicateQuestions.push(response.data.data[i].question._id);
-                                 self.recentQuestions.push(response.data.data[i].question);
+                                self.preload = false;
+                                self.duplicateQuestions.push(response.data.data[i].question._id);
+                                self.recentQuestions.push(response.data.data[i].question);
                             }
-                           
+
                         }
                     }
 
-                   
+
 
 
                 }
@@ -150,18 +150,18 @@ app.controller('userAnswerController', ["$http", "$location", "mainService", "$c
 
                     } else {
 
-                         //duplicate question check
-                            if(self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1){
+                        //duplicate question check
+                        if (self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1) {
 
-                            } else {
-                                
-                                 self.duplicateQuestions.push(response.data.data[i].question._id);
-                                 self.recentQuestions.push(response.data.data[i].question);
-                            }
+                        } else {
+                            self.preload = false;
+                            self.duplicateQuestions.push(response.data.data[i].question._id);
+                            self.recentQuestions.push(response.data.data[i].question);
+                        }
                     }
                 }
 
-                
+
             }
 
 
@@ -221,28 +221,28 @@ app.controller('userAnswerController', ["$http", "$location", "mainService", "$c
                             $location.path('login');
                         } else {
                             console.log(response);
-                          let tempQuestions = [];
+                            let tempQuestions = [];
                             for (let i in response.data.data) {
                                 if (response.data.data[i].question === null) {
 
                                 } else {
 
-                                     //duplicate question check
-                            if(self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1){
+                                    //duplicate question check
+                                    if (self.duplicateQuestions.indexOf(response.data.data[i].question._id) !== -1) {
 
-                            } else {
-                               
-                                 self.duplicateQuestions.push(response.data.data[i].question._id);
-                                 tempQuestions.push(response.data.data[i].question);
-                            }
-                                  
+                                    } else {
+
+                                        self.duplicateQuestions.push(response.data.data[i].question._id);
+                                        tempQuestions.push(response.data.data[i].question);
+                                    }
+
                                 }
 
                             }
 
                             self.recentQuestions = [...self.recentQuestions, ...tempQuestions];
 
-                           
+
 
                             if (response.data.data.length === 0) {
                                 self.stopscrolling = true;

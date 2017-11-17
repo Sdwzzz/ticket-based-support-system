@@ -1,6 +1,21 @@
-
 <!-- USER ANSWERED QUESTIONS VIEW -->
 <div style="margin-top:50px" class="row">
+    <!-- INTIAL PRELOADER -->
+    <div class="col s12">
+        <div ng-show="userAnswerCtrl.preload === true" style="margin-left:30vw" class="preloader-wrapper  small active ">
+            <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- HEAD SECTION -->
     <div class="col s12">
         <!-- Dropdown Trigger -->
@@ -65,6 +80,12 @@
 </div>
 <div style="display:none;text-align:center" id="questionEnd" class="col s12">
     <h5 style="font-family: 'Righteous', cursive !important;color:#49274A;text-shadow: 0px 0px 1px #49274A;"><hr style=></hr>End<hr style=""></hr></h5>
+    <!-- END SECTION -->
+    <div ng-show="userAnswerCtrl.preload !== true" class="col s12">
+        <div class="card-panel teal">
+            <h5 style="font-family: 'Righteous', cursive !important;color:#49274A;text-align:center;text-shadow: 0px 0px 1px #49274A;">NO MORE QUESTIONS</h5>
+        </div>
+    </div>
 </div>
 <!-- PROFILE SCRIPTS -->
 <script>

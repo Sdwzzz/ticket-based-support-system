@@ -9,6 +9,8 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
     self.notification = null;
     self.editdata = {};
     self.comeFrom = mainService.comeFrom;
+    self.answerpostloader = false;
+    self.preload = true;
  
     // check for cookies 
     if (!($cookies.get('token'))) {
@@ -60,6 +62,8 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
 
             self.answers = self.questionDetail.answers;
 
+            self.preload = false;
+
             //check the user is the owner of the question
             if (app.user._id === self.questionDetail.postedBy._id) {
                 self.user = true;
@@ -94,7 +98,7 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
     // answer the question
 
     self.answerHandler = function() {
-
+        self.answerpostloader = true;
 
         console.log(self.data);
         $http.post('/api/answer', self.data)
@@ -107,6 +111,7 @@ app.controller('detailController', ['$http', 'mainService', '$location', '$timeo
 
                     //clear the answer text area
                     self.data.answer = " ";
+                    self.answerpostloader = false;
                 }
 
             })
