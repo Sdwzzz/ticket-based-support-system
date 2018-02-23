@@ -1,4 +1,4 @@
 // token secrret
-const secret = "***cool_nuke477***";
+const secret = "******";
 
 module.exports = secret;
