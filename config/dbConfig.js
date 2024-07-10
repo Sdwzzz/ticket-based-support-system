@@ -12,11 +12,11 @@ const db = mongoose.connection;
 mongoose.Promise = global.Promise
 
 // CREATE CONNECTION
-mongoose.connect(dbUrl, { useMongoClient: true }).catch((err) => console.log(`\n some error occured while connecting to the ${dbName} database 
+mongoose.connect(dbUrl, { useMongoClient: true }).catch((err) => console.log(`\n Ocorreu algum erro durante a conexão com o ${dbName} database 
 \n ERROR :	${err}`));
 
 // SET EVENT LISTENERS
-db.on('connected', () => console.log(`\n server is successfully connected to the ${dbName} database`))
-db.on('disconnected', () => console.log(`\n Database disconnected ! ! !`));
+db.on('connected', () => console.log(`\n é conectado com sucesso ao servidor ${dbName} database`))
+db.on('disconnected', () => console.log(`\n Banco de dados desconectado ! ! !`));
 
 //END

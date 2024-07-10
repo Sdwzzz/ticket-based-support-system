@@ -34,7 +34,7 @@ module.exports = (app, responseFormat) => {
                 console.log(err);
             }
 
-            let response = responseFormat(false, "question details", 200, questions);
+            let response = responseFormat(false, "detalhes da pergunta", 200, questions);
             return res.json(response);
 
         })

@@ -20,7 +20,7 @@ module.exports = (app, responseFormat) => {
         // make sure parameter is an integer
         if (!(parseInt(req.params.skip)) && !(parseInt(req.params.skip) === 0)) {
 
-            let response = responseFormat(true, "skip parameter must be a number", 400, null);
+            let response = responseFormat(true, "o parâmetro de salto deve ser um número", 400, null);
             return res.json(response);
 
 
@@ -38,7 +38,7 @@ module.exports = (app, responseFormat) => {
                 console.log(err);
             }
 
-            let response = responseFormat(false, "all questions", 200, questions);
+            let response = responseFormat(false, "Todas as perguntas", 200, questions);
             return res.json(response);
 
         })

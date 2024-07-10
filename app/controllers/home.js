@@ -10,7 +10,7 @@ module.exports = (app, responseFormat) => {
 
     _router.get('/home', (req, res) => {
 
-        let response = responseFormat(false, 'welcome to ask elf', 200, null)
+        let response = responseFormat(false, 'Bem-vindo ao ask elf', 200, null)
 
         res.json(response);
     }) // end

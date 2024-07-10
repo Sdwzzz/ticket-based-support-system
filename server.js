@@ -59,19 +59,19 @@ require('./config/middlewaresConfig')(app);
 // initialize fall back routes
 app.get('*', (req,res)=>{
 
-	let response = responseFormat(true,'This is not a valid api, try a valid one',400,null)
+	let response = responseFormat(true,'Esta não é uma API válida, tente uma válida',400,null)
     return res.json(response);
 })
 
 app.post('*', (req,res)=>{
 
-	let response = responseFormat(true,'This is not a valid api, try a valid one',400,null)
+	let response = responseFormat(true,'Esta não é uma API válida, tente uma válida',400,null)
 	return res.json(response);
 })
 
 
 // let's kick the server
-server.listen(port, ()=>console.log(`server is waiting for the requests on port ${port} `));
+server.listen(port, ()=>console.log(`O servidor está aguardando as solicitações na porta ${port} `));
 
 
 

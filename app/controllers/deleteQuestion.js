@@ -15,7 +15,7 @@ module.exports = (app, responseFormat) => {
 
         // check for empty field
         if (!req.body.questionId) {
-            let response = responseFormat(true, 'question id is missing', 400, null);
+            let response = responseFormat(true, 'O ID da pergunta está ausente', 400, null);
             return res.json(response);
         }
 
@@ -24,12 +24,12 @@ module.exports = (app, responseFormat) => {
                 console.log(err);
             }
             if (!question) {
-                let response = responseFormat(true, 'there is no question available with this questin id', 400, null);
+                let response = responseFormat(true, 'Não há nenhuma pergunta disponível com esse ID de pergunta', 400, null);
                 return res.json(response);
             }
 
             if (!(req.decoded._id === question.postedBy.toString())) {
-                let response = responseFormat(true, 'you are not authorize to delete this question', 400, null);
+                let response = responseFormat(true, 'Você não tem autorização para excluir esta pergunta', 400, null);
                 return res.json(response);
             }
 
@@ -38,7 +38,7 @@ module.exports = (app, responseFormat) => {
                     console.log(err)
                 }
 
-                let response = responseFormat(false, 'question successfully deleted', 200, null);
+                let response = responseFormat(false, 'pergunta excluída com sucesso', 200, null);
                 return res.json(response);
 
             })

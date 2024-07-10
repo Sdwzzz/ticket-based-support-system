@@ -33,7 +33,7 @@ module.exports = (app, responseFormat) => {
         if (!req.body.questionId || !req.body.answer) {
 
             // SOME FIELDS ARE EMPTY
-            const response = responseFormat(true, 'some input parameters are missing in your answer fields', 400, null);
+            const response = responseFormat(true, 'Alguns parâmetros de entrada estão faltando em seus campos de resposta', 400, null);
             return res.json(response);
 
         }
@@ -46,13 +46,13 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!question) {
-                let response = responseFormat(true, "there is no questions available for this question id", 400, null);
+                let response = responseFormat(true, "Não há perguntas disponíveis para esse ID de pergunta", 400, null);
                 return res.json(response);
             }
 
             // check the status of the question
             if (question.status === "closed") {
-                let response = responseFormat(true, "this question is resolved or closed ", 400, null);
+                let response = responseFormat(true, "esta questão foi resolvida ou encerrada ", 400, null);
                 return res.json(response);
             }
 
@@ -134,7 +134,7 @@ module.exports = (app, responseFormat) => {
                             from: "askELF",
                             to: person.email,
                             subject: "Notification From askELF",
-                            text: `another new answer received for the question titled ${question.title} you before answered, check that out`
+                            text: `Outra nova resposta recebida para a pergunta intitulada ${question.title} que você respondeu antes, dê uma olhada nisso`
                         };
 
                         SMTP.sendMail(mailOptions, function(error, response) {
@@ -158,7 +158,7 @@ module.exports = (app, responseFormat) => {
                 }, 10000)
 
 
-                let response = responseFormat(false, "answer successfully posted !!", 200, newAnswer);
+                let response = responseFormat(false, "resposta postada com sucesso !!", 200, newAnswer);
                 return res.json(response);
 
             });

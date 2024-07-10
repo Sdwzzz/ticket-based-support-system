@@ -23,7 +23,7 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!user) {
-                let response = responseFormat(true, "you have to be a user of askElf to  post  any questions", 400, null);
+                let response = responseFormat(true, "Você precisa ser um usuário do askElf para postar perguntas", 400, null);
                 return res.json(response);
             }
 
@@ -51,7 +51,7 @@ module.exports = (app, responseFormat) => {
                         console.log(err);
                     }
 
-                    let response = responseFormat(false, 'question successfully posted', 200, null);
+                    let response = responseFormat(false, 'pergunta postada com sucesso', 200, null);
                     return res.json(response);
 
                 })

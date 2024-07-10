@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
 
         if (!req.body.email || !req.body.userName || !req.body.password || !req.body.gender || !req.body.interestedGames) {
             // SOME FIELDS ARE EMPTY
-            const response = responseFormat(true, 'some input parameters are missing in your signup fields', 400, null);
+            const response = responseFormat(true, 'alguns parâmetros de entrada estão faltando em seus campos de inscrição', 400, null);
             return res.json(response);
         }
     }
@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
 
         if (!req.body.email || !req.body.password) {
             // SOME FIELDS ARE EMPTY
-            const response = responseFormat(true, 'some input parameters are missing in your login fields', 400, null);
+            const response = responseFormat(true, 'Alguns parâmetros de entrada estão faltando em seus campos de login', 400, null);
             return res.json(response);
         }
     }
@@ -32,7 +32,7 @@ module.exports = (req, res, next) => {
 
         if (!req.body.email) {
             // SOME FIELDS ARE EMPTY
-            const response = responseFormat(true, ' email field is missing', 400, null);
+            const response = responseFormat(true, ' O campo de e-mail está faltando', 400, null);
             return res.json(response);
         }
 
@@ -44,7 +44,7 @@ module.exports = (req, res, next) => {
         if (!req.body.title || !req.body.question || !req.body.game) {
 
             // SOME FIELDS ARE EMPTY
-            const response = responseFormat(true, 'some input parameters are missing in your question fields', 400, null);
+            const response = responseFormat(true, 'Alguns parâmetros de entrada estão faltando em seus campos de perguntas', 400, null);
             return res.json(response);
 
         }
@@ -56,7 +56,7 @@ module.exports = (req, res, next) => {
         if (!req.body.questionId || !req.body.answer) {
 
             // SOME FIELDS ARE EMPTY
-            const response = responseFormat(true, 'some input parameters are missing in your answer fields', 400, null);
+            const response = responseFormat(true, 'Alguns parâmetros de entrada estão faltando em seus campos de resposta', 400, null);
             return res.json(response);
 
         }

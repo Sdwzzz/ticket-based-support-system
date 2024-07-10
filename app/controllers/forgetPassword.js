@@ -31,7 +31,7 @@ module.exports = (app, responseFormat) => {
 
         // validate the provide email address
         if (!(validator.validate(req.body.email))) {
-            const response = responseFormat(true, 'This is not a valid email address, try a valid one', 400, null);
+            const response = responseFormat(true, 'Este não é um endereço de e-mail válido, tente um endereço válido', 400, null);
             return res.json(response);
         }
 
@@ -39,7 +39,7 @@ module.exports = (app, responseFormat) => {
 
             if (!user) {
                 // wrong emai address
-                let response = responseFormat(true, "given email address is wrong, try correct one", 400, null);
+                let response = responseFormat(true, "O endereço de e-mail fornecido está incorreto, tente o correto", 400, null);
                 return res.json(response);
             }
 
@@ -72,7 +72,7 @@ module.exports = (app, responseFormat) => {
                 });
 
 
-                let response = responseFormat(false, "your password is mailed to your email", 200, null);
+                let response = responseFormat(false, "Sua senha é enviada para seu e-mail", 200, null);
                 return res.json(response);
 
 

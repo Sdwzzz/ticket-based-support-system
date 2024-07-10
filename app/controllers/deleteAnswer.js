@@ -13,7 +13,7 @@ module.exports = (app, responseFormat) => {
 
         // check for empty field
         if (!req.body.answerId) {
-            let response = responseFormat(true, 'answer id is missing', 400, null);
+            let response = responseFormat(true, 'O ID da resposta está ausente', 400, null);
             return res.json(response);
         }
 
@@ -23,12 +23,12 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!answer) {
-                let response = responseFormat(true, 'there is no answer available with this answer id', 400, null);
+                let response = responseFormat(true, 'Não há nenhuma resposta disponível com esse ID de resposta', 400, null);
                 return res.json(response);
             }
 
             if (!(req.decoded._id === answer.answeredBy.toString())) {
-                let response = responseFormat(true, 'you are not authorize to delete this answer', 400, null);
+                let response = responseFormat(true, 'você não tem autorização para excluir esta resposta', 400, null);
                 return res.json(response);
             }
 
@@ -37,7 +37,7 @@ module.exports = (app, responseFormat) => {
                     console.log(err)
                 }
 
-                let response = responseFormat(false, 'answer successfully deleted', 200, null);
+                let response = responseFormat(false, 'resposta excluída com sucesso', 200, null);
                 return res.json(response);
 
             })

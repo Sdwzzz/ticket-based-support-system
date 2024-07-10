@@ -15,7 +15,7 @@ module.exports = (app, responseFormat) => {
 
         // check for empty field
         if (!req.body.status || !req.body.questionId) {
-            let response = responseFormat(true, 'some input field is missing', 400, null);
+            let response = responseFormat(true, 'algum campo de entrada está faltando', 400, null);
             return res.json(response);
         }
 
@@ -25,12 +25,12 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!question) {
-                let response = responseFormat(true, 'there is no question available with this question id', 400, null);
+                let response = responseFormat(true, 'não há nenhuma pergunta disponível com esse ID de pergunta', 400, null);
                 return res.json(response);
             }
 
             if (!(req.decoded._id === question.postedBy.toString())) {
-                let response = responseFormat(true, 'you are not authorize to update this question detail', 400, null);
+                let response = responseFormat(true, 'você não tem autorização para atualizar os detalhes desta pergunta', 400, null);
                 return res.json(response);
             }
 
@@ -42,7 +42,7 @@ module.exports = (app, responseFormat) => {
 
                     }
 
-                    let response = responseFormat(false, 'question status updated to open', 200, null);
+                    let response = responseFormat(false, 'status da pergunta atualizado para aberto', 200, null);
                     return res.json(response);
                 })
 
@@ -54,12 +54,12 @@ module.exports = (app, responseFormat) => {
 
                     }
 
-                    let response = responseFormat(false, 'question status updated to closed', 200, null);
+                    let response = responseFormat(false, 'Status da pergunta atualizado para fechado', 200, null);
                     return res.json(response);
                 })
 
             } else {
-                let response = responseFormat(true, 'status option is wrong, use any one of the following options open or closed in your status field', 400, null);
+                let response = responseFormat(true, 'A opção de status está incorreta, use qualquer uma das seguintes opções aberto ou fechado em seu campo de status', 400, null);
                 return res.json(response);
             }
         })

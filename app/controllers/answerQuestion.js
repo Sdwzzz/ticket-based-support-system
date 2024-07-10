@@ -1,4 +1,4 @@
-// answer route
+// answer route hahaha
 // dependencies
 const mongoose = require("mongoose");
 const express = require("express");
@@ -39,7 +39,7 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!user) {
-                let response = responseFormat(true, "you have to be a user of askElf to  post the answer for any questions", 400, null);
+                let response = responseFormat(true, "Você precisa ser um usuário do askElf para publicar a resposta de qualquer perguntas", 400, null);
                 return res.json(response);
             }
 
@@ -52,13 +52,13 @@ module.exports = (app, responseFormat) => {
 
 
                 if (!question) {
-                    let response = responseFormat(true, "there is no questions available for this question id", 400, null);
+                    let response = responseFormat(true, "Não há perguntas disponíveis para esse ID de pergunta", 400, null);
                     return res.json(response);
                 }
 
                 // check the status of the question
                 if (question.status === "closed") {
-                    let response = responseFormat(true, "this question is resolved or closed ", 400, null);
+                    let response = responseFormat(true, "esta questão foi resolvida ou encerrada ", 400, null);
                     return res.json(response);
                 }
 
@@ -120,8 +120,8 @@ module.exports = (app, responseFormat) => {
 
                                         from: "askELF",
                                         to: user.email,
-                                        subject: "Notification From askELF",
-                                        text: `another new answer received for the question titled ${question.title} you before answered, check that out`
+                                        subject: "Notificação da askELF",
+                                        text: `Outra nova resposta recebida para a pergunta intitulada ${question.title} que você respondeu antes, dê uma olhada nisso`
                                     };
 
                                     SMTP.sendMail(mailOptions, function(error, response) {
@@ -192,8 +192,8 @@ module.exports = (app, responseFormat) => {
 
                                         from: "askELF",
                                         to: user.email,
-                                        subject: "Your Question Received An Answer",
-                                        text: `your question titled ${question.title} received an answer, go and check that out`
+                                        subject: "Sua pergunta recebeu uma resposta",
+                                        text: `sua pergunta intitulada ${question.title} recebeu uma resposta, vá até lá e dê uma olhada`
                                     };
 
                                     SMTP.sendMail(mailOptions, function(error, response) {
@@ -221,7 +221,7 @@ module.exports = (app, responseFormat) => {
 
 
 
-                            let response = responseFormat(false, "answer successfully posted !!", 200, newAnswer);
+                            let response = responseFormat(false, "resposta postada com sucesso !!", 200, newAnswer);
                             return res.json(response);
                         })
 

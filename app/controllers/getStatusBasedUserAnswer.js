@@ -15,13 +15,13 @@ module.exports = (app, responseFormat) => {
 
         // validate the query fields
         if (!req.params.status) {
-            let response = responseFormat(true, "this route requires url parameter of status", 400, null);
+            let response = responseFormat(true, "essa rota requer o parâmetro url de status", 400, null);
             return res.json(response);
         }
 
         if (!(req.params.status === "closed") && !(req.params.status === "open")) {
 
-            let response = responseFormat(true, "your url parameter shoul have any one of the options of closed or open", 400, null);
+            let response = responseFormat(true, "seu parâmetro de url deve ter qualquer uma das opções de fechado ou aberto", 400, null);
             return res.json(response);
         }
 

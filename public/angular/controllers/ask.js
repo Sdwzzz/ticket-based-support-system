@@ -35,7 +35,7 @@ app.controller('askController', ["$http", "$location", "$cookies", function($htt
 
         } else {
             self.loader = false;
-            self.message = "please select the type of game";
+            self.message = "selecione o tipo de tópico";
         }
 
     }

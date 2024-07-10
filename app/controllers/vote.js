@@ -17,7 +17,7 @@ module.exports = (app, responseFormat) => {
 
         if (!req.body.vote || !req.body.give || !req.body.voteId) {
             // some fields are empty
-            const response = responseFormat(true, 'some input parameters are missing in your voting fields', 400, null);
+            const response = responseFormat(true, 'Alguns parâmetros de entrada estão faltando em seus campos de votação', 400, null);
             return res.json(response);
         }
 
@@ -27,7 +27,7 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!user) {
-                let response = responseFormat(true, "you have to be a user of askElf to  post  any questions", 400, null);
+                let response = responseFormat(true, "Você precisa ser um usuário do askElf para postar perguntas", 400, null);
                 return res.json(response);
             }
 
@@ -45,7 +45,7 @@ module.exports = (app, responseFormat) => {
 
                     console.log(user.votedQuestions[i].toString());
                     if (user.votedQuestions[i].toString() === req.body.voteId) {
-                        let response = responseFormat(true, "you already voted for this question", 400, null);
+                        let response = responseFormat(true, "você já votou nessa pergunta", 400, null);
                         return res.json(response);
 
                     }
@@ -61,7 +61,7 @@ module.exports = (app, responseFormat) => {
                     }
                     if (!question) {
 
-                        const response = responseFormat(true, 'no question found with this id', 400, null);
+                        const response = responseFormat(true, 'Nenhuma pergunta encontrada com esse ID', 400, null);
                         return res.json(response);
 
                     }
@@ -82,7 +82,7 @@ module.exports = (app, responseFormat) => {
                             if (err) {
                                 console.log(err);
                             }
-                            const response = responseFormat(false, 'sucessfully upvoted for this question', 200, null);
+                            const response = responseFormat(false, 'Votou a favor desta pergunta com sucesso', 200, null);
                             return res.json(response);
                         })
                     }
@@ -93,7 +93,7 @@ module.exports = (app, responseFormat) => {
                             if (err) {
                                 console.log(err);
                             }
-                            const response = responseFormat(false, 'sucessfully downvoted for this question', 200, null);
+                            const response = responseFormat(false, 'com sucesso, com a pergunta sendo rejeitada', 200, null);
                             return res.json(response);
                         })
 
@@ -119,7 +119,7 @@ module.exports = (app, responseFormat) => {
                     }
 
                     if (user.votedAnswers[i].toString() === req.body.voteId) {
-                        let response = responseFormat(true, "you already voted for this answer", 400, null);
+                        let response = responseFormat(true, "você já votou nessa resposta", 400, null);
                         return res.json(response);
 
                     }
@@ -133,7 +133,7 @@ module.exports = (app, responseFormat) => {
                     }
                     if (!answer) {
 
-                        const response = responseFormat(true, 'no answer found with this id', 400, null);
+                        const response = responseFormat(true, 'Nenhuma resposta encontrada com esse ID', 400, null);
                         return res.json(response);
 
                     }
@@ -154,7 +154,7 @@ module.exports = (app, responseFormat) => {
                             if (err) {
                                 console.log(err);
                             }
-                            const response = responseFormat(false, 'sucessfully upvoted for this answer', 200, null);
+                            const response = responseFormat(false, 'Votou a favor desta resposta com sucesso', 200, null);
                             return res.json(response);
                         })
                     }
@@ -165,7 +165,7 @@ module.exports = (app, responseFormat) => {
                             if (err) {
                                 console.log(err);
                             }
-                            const response = responseFormat(false, 'sucessfully downvoted for this answer', 200, null);
+                            const response = responseFormat(false, 'esta resposta foi rejeitada com sucesso', 200, null);
                             return res.json(response);
                         })
 

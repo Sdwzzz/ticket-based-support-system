@@ -15,7 +15,7 @@ module.exports = (app, responseFormat) => {
     _router.post('/editquestion', jwtVerification, (req, res) => {
         // check for empty field
         if (!req.body.questionId || !req.body.updateQuestion) {
-            let response = responseFormat(true, 'some input parameters are missing', 400, null);
+            let response = responseFormat(true, 'Alguns parâmetros de entrada estão faltando', 400, null);
             return res.json(response);
         }
 
@@ -25,14 +25,14 @@ module.exports = (app, responseFormat) => {
             }
 
             if (!question) {
-                let response = responseFormat(true, 'there is no question available with this question id', 400, null);
+                let response = responseFormat(true, 'não há nenhuma pergunta disponível com esse ID de pergunta', 400, null);
                 return res.json(response);
             }
 
 
 
             if (!(req.decoded._id === question.postedBy.toString())) {
-                let response = responseFormat(true, 'you are not authorize to delete this question detail', 400, null);
+                let response = responseFormat(true, 'você não tem autorização para excluir este detalhe da pergunta', 400, null);
                 return res.json(response);
             }
 
@@ -41,7 +41,7 @@ module.exports = (app, responseFormat) => {
                 if (req.body.updateQuestion.title.length > 0) {
                     question.title = req.body.updateQuestion.title;
                 } else {
-                    let response = responseFormat(true, 'title should not be empty', 400, null);
+                    let response = responseFormat(true, 'O título não deve estar vazio', 400, null);
                     return res.json(response);
                 }
 
@@ -50,7 +50,7 @@ module.exports = (app, responseFormat) => {
                 if (req.body.updateQuestion.question.length > 0) {
                     question.question = req.body.updateQuestion.question;
                 } else {
-                    let response = responseFormat(true, 'question should not be empty', 400, null);
+                    let response = responseFormat(true, 'A pergunta não deve estar vazia', 400, null);
                     return res.json(response);
                 }
 
@@ -60,7 +60,7 @@ module.exports = (app, responseFormat) => {
                     question.game = req.body.updateQuestion.game;
 
                 } else {
-                    let response = responseFormat(true, 'game type should not be empty', 400, null);
+                    let response = responseFormat(true, 'O tipo de jogo não deve estar vazio', 400, null);
                     return res.json(response);
                 }
 
@@ -71,7 +71,7 @@ module.exports = (app, responseFormat) => {
                     console.log(err);
                 }
 
-                let response = responseFormat(false, 'question successfully updated!!', 200, null);
+                let response = responseFormat(false, 'pergunta atualizada com sucesso!!', 200, null);
                 return res.json(response);
 
             })

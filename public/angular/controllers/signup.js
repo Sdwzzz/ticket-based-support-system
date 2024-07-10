@@ -11,7 +11,7 @@ app.controller('signupController', ['$http', '$location', function($http, $locat
 
 
         if (self.data.interestedGames.length <= 0) {
-            self.message = "please choose atleast one games of your choice"
+            self.message = "Por favor, escolha pelo menos um tópico de sua preferência"
             self.loader = false;
         } else {
 

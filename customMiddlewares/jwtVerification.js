@@ -24,7 +24,7 @@
          jwt.verify(token, secret, (err, decoded) => {
 
              if (err) {
-                 let response = responseFormat(true, 'Authentication Failed, invalid token', 401, null);
+                 let response = responseFormat(true, 'Falha na autenticação, token inválido', 401, null);
                  return res.json(response);
              } else {
                  // SAVE THE DECODED VALUES
@@ -36,7 +36,7 @@
          })
      } else {
          // IF TOKEN NOT PRESENT
-         let response = responseFormat(true, 'Your are not authenicated to use this', 403, null);
+         let response = responseFormat(true, 'Você não tem autorização para usar isso', 403, null);
          return res.json(response);
      }
 

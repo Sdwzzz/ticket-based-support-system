@@ -33,7 +33,7 @@ module.exports = (app, responseFormat) => {
 
         // validate the provide email address
         if (!(validator.validate(req.body.email))) {
-            const response = responseFormat(true, 'This is not a valid email address, try a valid one', 400, null);
+            const response = responseFormat(true, 'Este não é um endereço de e-mail válido, tente um endereço válido', 400, null);
             return res.json(response);
         }
 
@@ -43,7 +43,7 @@ module.exports = (app, responseFormat) => {
 
             if (user) {
                 // user already exist
-                let response = responseFormat(true, "This email is already exist if you already signed up please try login", 400, null);
+                let response = responseFormat(true, "Este e-mail já existe, se você já se inscreveu, tente fazer o login", 400, null);
                 return res.json(response);
             }
 
@@ -78,7 +78,7 @@ module.exports = (app, responseFormat) => {
                     from: "askELF",
                     to: secrets.email,
                     subject: "WELCOME MESSAGE",
-                    text: `hi ${req.body.userName} welcome to askELF, ask your querys and get help and also help to solve others queries too.`
+                    text: `hi ${req.body.userName} Bem-vindo ao askELF, faça suas perguntas e obtenha ajuda e também ajude a resolver as dúvidas dos outros.`
                 };
 
                 SMTP.sendMail(mailOptions, function(error, response) {
@@ -103,7 +103,7 @@ module.exports = (app, responseFormat) => {
                 const token = jwt.sign(userData, app.get('secret'), { expiresIn: 60 * 60 * 24 }); // ** validity 24 hours only **
                 res.cookie('token', token);
 
-                let response = responseFormat(false, "successfully signed up !!!", 200, token);
+                let response = responseFormat(false, "Registrou-se com sucesso !!!", 200, token);
                 return res.json(response);
 
             })

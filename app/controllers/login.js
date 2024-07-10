@@ -19,7 +19,7 @@ module.exports = (app, responseFormat) => {
 
         // check requested email is a valid one
         if (!(validator.validate(req.body.email))) {
-            const response = responseFormat(true, 'This is not a valid email address, try a valid one', 400, null);
+            const response = responseFormat(true, 'Este não é um endereço de e-mail válido, tente um endereço válido', 400, null);
             return res.json(response);
         }
 
@@ -28,7 +28,7 @@ module.exports = (app, responseFormat) => {
 
             if (!user) {
                 // user not found
-                let response = responseFormat(true, 'No user found with this email id', 400, null);
+                let response = responseFormat(true, 'Nenhum usuário foi encontrado com esse ID de e-mail', 400, null);
                 return res.json(response);
             }
 
@@ -39,7 +39,7 @@ module.exports = (app, responseFormat) => {
 
             if (!isPasswordValid) {
                 // wrong password
-                let response = responseFormat(true, 'provided password is not matched with the user email', 400, null);
+                let response = responseFormat(true, 'a senha fornecida não corresponde ao e-mail do usuário', 400, null);
                 return res.json(response);
             }
 
@@ -55,7 +55,7 @@ module.exports = (app, responseFormat) => {
             // assign the token in cookies
             res.cookie("token", token);
 
-            let response = responseFormat(false, 'successfully loged into the account !!!', 200, user);
+            let response = responseFormat(false, 'logado com sucesso na conta !!!', 200, user);
             return res.json(response);
 
 
